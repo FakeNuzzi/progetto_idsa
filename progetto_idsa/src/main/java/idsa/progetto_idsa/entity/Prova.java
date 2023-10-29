@@ -11,17 +11,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 
-@Table(name="nomeTabella")
-public class prova {
+@Entity
+@Table(name = "prova")
+public class Prova {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="nome")
+    @Column(name = "nome")
     private String nome;
-    @Column(name="cognome")
+    @Column(name = "cognome")
     private String cognome;
-    @Column(name="email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 }
