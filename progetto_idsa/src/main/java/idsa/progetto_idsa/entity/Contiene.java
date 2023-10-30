@@ -1,7 +1,5 @@
 package idsa.progetto_idsa.entity;
 
-import java.util.*;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,16 +12,12 @@ import lombok.Setter;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "Cartella")
-public class Cartella {
+@Table(name = "Contiene")
+public class Contiene {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cartella;
     @Id
-    @Column(name = "Paziente", nullable = false)
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_paziente")
-    private Long id_paziente;
-    @Column(name = "Lista Referti", nullable = false)
-    private List<Long> list=new ArrayList<Long>();
+    private Long id_referto;
+
 }
