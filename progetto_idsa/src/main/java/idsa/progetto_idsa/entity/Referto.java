@@ -1,7 +1,5 @@
 package idsa.progetto_idsa.entity;
 
-import java.sql.Date;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +17,8 @@ public class Referto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "Appuntamento", nullable = false)
-    private Long appunt;
-    @Column(name = "Data e Ora", nullable = false)
-    private Date data_n;
-    @Column(name = "Tipo visita", nullable = false)
-    private String tipo_visita;
+    @Column(name = "Referto visita", nullable = false)
+    private String tipo_vis;
+    @Column(name = "Prescrizione", nullable = false)
+    private String prescr;
 }
