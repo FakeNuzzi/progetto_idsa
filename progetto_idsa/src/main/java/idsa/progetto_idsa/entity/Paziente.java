@@ -1,5 +1,6 @@
 package idsa.progetto_idsa.entity;
 
+import java.sql.Date;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,15 +14,17 @@ import lombok.Setter;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "prova")
-public class Prova {
+@Table(name = "Paziente")
+public class Paziente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome")
+    @Column(name = "Nome", nullable = false)
     private String nome;
-    @Column(name = "cognome")
+    @Column(name = "Cognome", nullable = false)
     private String cognome;
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
+    @Column(name = "Data di nascita", nullable = false)
+    private Date data_n;
+    @Column(name = "Codice Fiscale", nullable = false, unique = true)
+    private String cf;
 }

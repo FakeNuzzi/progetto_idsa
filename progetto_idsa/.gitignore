@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### application properties così ognuno ha la sua password
+/src/main/resources/application.properties
