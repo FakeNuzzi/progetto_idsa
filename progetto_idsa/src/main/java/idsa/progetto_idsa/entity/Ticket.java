@@ -19,7 +19,10 @@ public class Ticket {
     private Long id;
     @Column(name = "Nome", nullable = false)
     private Float costo;
-    
+
+    @Column(name = "Stato", nullable = false)
+    private Boolean stato;
+    @Id
     @OneToOne
     @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "Id")
     private Appuntamento appuntamento;
@@ -27,4 +30,6 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "Paziente_Id", referencedColumnName = "Id")
     private Paziente paziente;
+
+
 }

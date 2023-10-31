@@ -17,11 +17,11 @@ public class Referto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "Referto visita", nullable = false)
+    @Column(name = "Referto_visita", nullable = false)
     private String tipo_vis;
     @Column(name = "Prescrizione", nullable = false)
     private String prescr;
-
+    @Id
     @OneToOne
     @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "Id")
     private Appuntamento appuntamento;
