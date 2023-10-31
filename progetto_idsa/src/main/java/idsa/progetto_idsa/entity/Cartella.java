@@ -2,6 +2,7 @@ package idsa.progetto_idsa.entity;
 
 import java.util.*;
 
+import idsa.progetto_idsa.entityID.CartellaID;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@IdClass(CartellaID.class)
 @Entity
 @Table(name = "Cartella")
 public class Cartella {
