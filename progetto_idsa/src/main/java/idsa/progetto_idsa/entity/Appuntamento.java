@@ -23,4 +23,7 @@ public class Appuntamento {
     private Date data_n;
     @Column(name = "Tipo visita", nullable = false)
     private String tipo_visita;
+
+    @OneToOne(mappedBy = "appuntamento")
+    private Referto referto;
 }

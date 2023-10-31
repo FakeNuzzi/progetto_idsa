@@ -27,4 +27,7 @@ public class Paziente {
     private Date data_n;
     @Column(name = "Codice Fiscale", nullable = false, unique = true)
     private String cf;
+
+    @OneToOne(mappedBy = "paziente")
+    private Cartella cartella;
 }

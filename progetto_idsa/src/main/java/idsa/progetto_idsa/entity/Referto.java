@@ -21,4 +21,8 @@ public class Referto {
     private String tipo_vis;
     @Column(name = "Prescrizione", nullable = false)
     private String prescr;
+
+    @OneToOne
+    @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "Id")
+    private Appuntamento appuntamento;
 }

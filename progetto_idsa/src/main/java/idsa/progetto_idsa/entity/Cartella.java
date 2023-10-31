@@ -23,4 +23,8 @@ public class Cartella {
     private Long paz;
     @Column(name = "Lista Referti", nullable = false)
     private List<Long> list=new ArrayList<Long>();
+
+    @OneToOne
+    @JoinColumn(name = "Paziente_Id", referencedColumnName = "Id")
+    private Paziente paziente;
 }
