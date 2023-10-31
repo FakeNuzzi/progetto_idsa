@@ -1,6 +1,7 @@
 package idsa.progetto_idsa.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,4 +32,7 @@ public class Medico {
     private Float stipendio;
     @Column(name = "Specializzazione", nullable = false, unique = true)
     private String specializ;
+
+    @OneToMany(mappedBy = "medico")
+    private List<Appuntamento> appuntamenti;
 }

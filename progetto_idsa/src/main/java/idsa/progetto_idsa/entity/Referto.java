@@ -25,4 +25,8 @@ public class Referto {
     @OneToOne
     @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "Id")
     private Appuntamento appuntamento;
+
+    @ManyToOne
+    @JoinColumn(name = "Cartella_Id", referencedColumnName = "Id")
+    private Cartella cartella;
 }
