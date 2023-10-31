@@ -16,13 +16,15 @@ import lombok.Setter;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_ticket;
-    @Column(name = "costo", nullable = false)
+    private Long id;
+    @Column(name = "Nome", nullable = false)
     private Float costo;
-    @Id
-    @Column(name = "id_appuntamento", nullable = false)
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_appuntamento")
-    private Long id_appuntamento;
+    
+    @OneToOne
+    @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "Id")
+    private Appuntamento appuntamento;
 
+    @ManyToOne
+    @JoinColumn(name = "Paziente_Id", referencedColumnName = "Id")
+    private Paziente paziente;
 }

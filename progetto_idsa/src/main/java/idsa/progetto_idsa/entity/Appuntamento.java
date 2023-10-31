@@ -23,4 +23,18 @@ public class Appuntamento {
     private Date data_n;
     @Column(name = "Tipo visita", nullable = false)
     private String tipo_visita;
+
+    @OneToOne(mappedBy = "appuntamento")
+    private Referto referto;
+
+    @OneToOne(mappedBy = "appuntamento")
+    private Ticket ticket;
+
+    @ManyToOne
+    @JoinColumn(name = "Paziente_Id", referencedColumnName = "Id")
+    private Paziente paziente;
+
+    @ManyToOne
+    @JoinColumn(name = "Medico_Id", referencedColumnName = "Id")
+    private Medico medico;
 }

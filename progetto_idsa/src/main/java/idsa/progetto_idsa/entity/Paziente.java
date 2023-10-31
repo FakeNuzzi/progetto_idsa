@@ -1,5 +1,6 @@
 package idsa.progetto_idsa.entity;
 
+import java.util.List;
 import java.sql.Date;
 
 import jakarta.persistence.*;
@@ -27,4 +28,13 @@ public class Paziente {
     private Date data_n;
     @Column(name = "Codice Fiscale", nullable = false, unique = true)
     private String cf;
+
+    @OneToOne(mappedBy = "paziente")
+    private Cartella cartella;
+
+    @OneToMany(mappedBy = "paziente")
+    private List<Appuntamento> appuntamenti;
+
+    @OneToMany(mappedBy = "paziente")
+    private List<Ticket> ticket;
 }
