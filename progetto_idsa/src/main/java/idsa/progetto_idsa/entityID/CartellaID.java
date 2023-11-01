@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import idsa.progetto_idsa.entity.Paziente;
 
 import java.io.Serializable;
 
@@ -14,5 +15,5 @@ import java.io.Serializable;
 
 public class CartellaID implements Serializable {
     private Long id_cartella;
-    private Long id_paziente;
+    private Paziente paziente;
 }

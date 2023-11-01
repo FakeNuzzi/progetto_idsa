@@ -2,7 +2,6 @@ package idsa.progetto_idsa.entity;
 
 import java.util.*;
 
-import idsa.progetto_idsa.entityID.CartellaID;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(CartellaID.class)
+
 @Entity
 @Table(name = "Cartella")
 public class Cartella {
@@ -21,11 +20,9 @@ public class Cartella {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cartella;
 
-    @Id
-    private Long id_paziente;
-    @MapsId
+    @JoinColumn(name = "Paziente")
     @OneToOne
-    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
+    @MapsId
     private Paziente paziente;
 
     @Column(name = "Lista Referti", nullable = false)
