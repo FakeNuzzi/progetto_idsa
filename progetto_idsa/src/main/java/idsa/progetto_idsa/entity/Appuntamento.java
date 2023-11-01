@@ -1,6 +1,7 @@
 package idsa.progetto_idsa.entity;
 
 import java.sql.Date;
+import java.util.*;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,17 +25,17 @@ public class Appuntamento {
     @Column(name = "Tipo visita", nullable = false)
     private String tipo_visita;
 
-    @OneToOne(mappedBy = "appuntamento")
-    private Referto referto;
+    //@OneToOne(mappedBy = "Appuntamento_Id")
+    //private Referto referto;
 
-    @OneToOne(mappedBy = "appuntamento")
-    private Ticket ticket;
+    //@OneToOne(mappedBy = "appuntamento_Id")
+    //private Ticket ticket;
 
-    @ManyToOne
-    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
-    private Paziente paziente;
+    //@ManyToOne
+    //@JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
+    //private Paziente paziente;
 
-    @ManyToOne
-    @JoinColumn(name = "Medico_Id", referencedColumnName = "id_medico")
-    private Medico medico;
+    //@ManyToOne
+    //@JoinColumn(name = "Medico_Id", referencedColumnName = "id_medico")
+    //private Medico medico;
 }

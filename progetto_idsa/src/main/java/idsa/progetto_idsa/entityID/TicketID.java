@@ -14,5 +14,5 @@ import java.io.Serializable;
 
 public class TicketID implements Serializable {
     private Long id_ticket;
-    private Long id_appuntamento;
+    private Long Appuntamento_Id;
 }

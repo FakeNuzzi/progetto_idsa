@@ -14,5 +14,5 @@ import java.io.Serializable;
 
 public class CartellaID implements Serializable {
     private Long id_cartella;
-    private Long id_paziente;
+    private Long Paziente_Id;
 }

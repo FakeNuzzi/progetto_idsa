@@ -20,17 +20,14 @@ public class Cartella {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cartella;
-
-    @Id
-    private Long id_paziente;
-    @MapsId
     @OneToOne
     @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
-    private Paziente paziente;
+    @MapsId
+    private Paziente Paziente_Id;
 
     @Column(name = "Lista Referti", nullable = false)
     private List<Long> list=new ArrayList<Long>();
 
-    @OneToMany(mappedBy = "cartella")
+    @OneToMany
     private List<Referto> referti;
 }

@@ -29,12 +29,12 @@ public class Paziente {
     @Column(name = "Codice Fiscale", nullable = false, unique = true)
     private String cf;
 
-    @OneToOne(mappedBy = "paziente")
-    private Cartella cartella;
+    //@OneToOne(mappedBy = "paziente")
+    //private Cartella cartella;
 
-    @OneToMany(mappedBy = "paziente")
+    @OneToMany
     private List<Appuntamento> appuntamenti;
 
-    @OneToMany(mappedBy = "paziente")
+    @OneToMany
     private List<Ticket> ticket;
 }

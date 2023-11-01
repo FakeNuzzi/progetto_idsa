@@ -18,19 +18,17 @@ public class Referto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_referto;
-    @Id
-    private Long id_appuntamento;
-    @MapsId
     @OneToOne
     @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "id_appuntamento")
-    private Appuntamento appuntamento;
+    @MapsId
+    private Appuntamento Appuntamento_Id;
 
     @Column(name = "Referto_visita", nullable = false)
     private String tipo_vis;
     @Column(name = "Prescrizione", nullable = false)
     private String prescr;
     
-    @ManyToOne
-    @JoinColumn(name = "Cartella_Id", referencedColumnName = "id_cartella")
-    private Cartella cartella;
+    //@ManyToOne
+    //@JoinColumn(name = "Cartella_Id", referencedColumnName = "id_cartella")
+    //private Cartella cartella;
 }

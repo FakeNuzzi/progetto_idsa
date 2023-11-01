@@ -33,6 +33,6 @@ public class Medico {
     @Column(name = "Specializzazione", nullable = false, unique = true)
     private String specializ;
 
-    @OneToMany(mappedBy = "medico")
+    @OneToMany
     private List<Appuntamento> appuntamenti;
 }
