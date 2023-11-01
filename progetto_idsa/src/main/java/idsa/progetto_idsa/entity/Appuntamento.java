@@ -31,10 +31,10 @@ public class Appuntamento {
     private Ticket ticket;
 
     @ManyToOne
-    @JoinColumn(name = "Paziente_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
     private Paziente paziente;
 
     @ManyToOne
-    @JoinColumn(name = "Medico_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "Medico_Id", referencedColumnName = "id_medico")
     private Medico medico;
 }

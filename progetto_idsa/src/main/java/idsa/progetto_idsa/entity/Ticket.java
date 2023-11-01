@@ -24,11 +24,11 @@ public class Ticket {
     private Boolean stato;
     @Id
     @OneToOne
-    @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "id_appuntamento")
     private Appuntamento appuntamento;
 
     @ManyToOne
-    @JoinColumn(name = "Paziente_Id", referencedColumnName = "Id")
+    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
     private Paziente paziente;
 
 

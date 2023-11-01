@@ -15,6 +15,4 @@ import java.io.Serializable;
 public class CartellaID implements Serializable {
     private Long paziente;
     private Long id_cartella;
-
-
 }
