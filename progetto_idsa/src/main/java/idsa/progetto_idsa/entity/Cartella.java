@@ -19,15 +19,17 @@ import lombok.Setter;
 public class Cartella {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private CartellaID id_cartella;
+    private Long id_cartella;
+
+    @Id
+    private Long id_paziente;
+    @MapsId
+    @OneToOne
+    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
+    private Paziente paziente;
 
     @Column(name = "Lista Referti", nullable = false)
     private List<Long> list=new ArrayList<Long>();
-
-    @OneToOne
-    @Id
-    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
-    private Paziente paziente;
 
     @OneToMany(mappedBy = "cartella")
     private List<Referto> referti;

@@ -13,6 +13,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 
 public class RefertoID implements Serializable {
-    private Long appuntamento;
     private Long id_referto;
+    private Long id_appuntamento;
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class CartellaID implements Serializable {
-    private Long id_cartella;
-    private Long id_paziente;
+public class TicketID implements Serializable {
+    private Long id_ticket;
+    private Long id_appuntamento;
 }
