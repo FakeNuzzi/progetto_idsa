@@ -1,5 +1,6 @@
 package idsa.progetto_idsa.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
@@ -29,12 +30,45 @@ public class Paziente {
     @Column(name = "Codice Fiscale", nullable = false, unique = true)
     private String cf;
 
-    //@OneToOne(mappedBy = "paziente")
-    //private Cartella cartella;
-
     @OneToMany
     private List<Appuntamento> appuntamenti;
 
     @OneToMany
-    private List<Ticket> ticket;
+    private List<Ticket> tickets;
+
+    public Long getId_paziente(){
+        return this.id_paziente;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public String getCognome(){
+        return this.cognome;
+    }
+
+    public Date getData_n(){
+        return this.data_n;
+    }
+
+    public String getCf(){
+        return this.cf;
+    }
+
+    public List<Long> getId_appuntamenti(){
+        List<Long> id_appuntamenti = new ArrayList<Long>();
+        for(int i=0; i<this.appuntamenti.size();i++){
+            id_appuntamenti.add(this.appuntamenti.get(i).getId_appuntamento());
+        }
+        return id_appuntamenti;
+    }
+
+    public List<Long> getId_tickets(){
+        List<Long> id_tickets = new ArrayList<Long>();
+        for(int i=0; i<this.tickets.size();i++){
+            id_tickets.add(this.tickets.get(i).getId_ticket());
+        }
+        return id_tickets;
+    }
 }

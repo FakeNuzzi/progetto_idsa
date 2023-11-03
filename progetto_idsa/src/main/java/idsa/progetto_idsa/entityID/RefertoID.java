@@ -14,5 +14,5 @@ import java.io.Serializable;
 
 public class RefertoID implements Serializable {
     private Long id_referto;
-    private Long Appuntamento_Id;
+    private Long appuntamento;
 }

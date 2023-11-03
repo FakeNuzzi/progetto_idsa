@@ -1,18 +1,18 @@
-package idsa.progetto_idsa.entityID;
+package idsa.progetto_idsa.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class TicketID implements Serializable {
-    private Long id_ticket;
+public class RefertoDto { 
+    private Long id_referto;
     private Long appuntamento;
+    private String tipo_vis;
+    private String prescr;
 }

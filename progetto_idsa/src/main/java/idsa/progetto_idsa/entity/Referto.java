@@ -19,16 +19,35 @@ public class Referto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_referto;
     @OneToOne
-    @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "id_appuntamento")
+    @JoinColumn(name = "Appuntamento", referencedColumnName = "id_appuntamento")
     @MapsId
-    private Appuntamento Appuntamento_Id;
+    private Appuntamento appuntamento;
 
     @Column(name = "Referto_visita", nullable = false)
     private String tipo_vis;
-    @Column(name = "Prescrizione", nullable = false)
+    @Column(name = "Prescrizione", nullable = true)
     private String prescr;
+
+    /*
+    @ManyToOne
+    @JoinColumn(name = "Cartella_Id", referencedColumnName = "id_cartella")
+    private Cartella cartella;
+    */
+
+    public Long getId_referto(){
+        return this.id_referto;
+    }
+
+    public String getTipo_vis(){
+        return this.tipo_vis;
+    }
+
+    public String getPrescr(){
+        return this.prescr;
+    }
+
+    public Long getId_appuntamento(){
+        return this.appuntamento.getId_appuntamento();
+    }
     
-    //@ManyToOne
-    //@JoinColumn(name = "Cartella_Id", referencedColumnName = "id_cartella")
-    //private Cartella cartella;
 }
