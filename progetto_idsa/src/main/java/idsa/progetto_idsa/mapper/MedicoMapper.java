@@ -12,7 +12,21 @@ public class MedicoMapper{
             medico.getData_n(),
             medico.getCf(),
             medico.getStipendio(),
-            medico.getSpecializ()
+            medico.getSpecializ(),
+            medico.getAppuntamenti()
         );
-    }    
+    }
+
+    public static Medico mapToMedico(MedicoDto medicoDto){
+        return new Medico(
+            medicoDto.getId_medico(),
+            medicoDto.getNome(),
+            medicoDto.getCognome(),
+            medicoDto.getData_n(),
+            medicoDto.getCf(),
+            medicoDto.getStipendio(),
+            medicoDto.getSpecializ(),
+            medicoDto.getAppuntamenti()
+        );
+    }     
 }

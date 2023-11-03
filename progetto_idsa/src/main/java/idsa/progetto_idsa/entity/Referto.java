@@ -1,6 +1,6 @@
 package idsa.progetto_idsa.entity;
 
-import idsa.progetto_idsa.entityID.RefertoID;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(RefertoID.class)
+
 @Entity
 @Table(name = "Referto")
 public class Referto {

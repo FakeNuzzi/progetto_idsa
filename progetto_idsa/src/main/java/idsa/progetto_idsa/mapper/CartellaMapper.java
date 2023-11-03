@@ -10,5 +10,13 @@ public class CartellaMapper{
             cartella.getPaziente(),
             cartella.getReferti()
         );
-    }    
+    }
+
+    public static Cartella mapToCartella(CartellaDto cartellaDto){
+        return new Cartella(
+            cartellaDto.getId_cartella(),
+            cartellaDto.getPaziente(),
+            cartellaDto.getReferti()
+        );
+    }     
 }

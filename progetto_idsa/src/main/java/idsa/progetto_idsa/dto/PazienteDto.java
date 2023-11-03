@@ -3,6 +3,9 @@ package idsa.progetto_idsa.dto;
 import java.sql.Date;
 import java.util.List;
 
+import idsa.progetto_idsa.entity.Appuntamento;
+import idsa.progetto_idsa.entity.Ticket;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +22,6 @@ public class PazienteDto {
     private String cognome;
     private Date data_n;
     private String cf;
-    private List<Long> appuntamenti;
-    private List<Long> ticket;
+    private List<Appuntamento> appuntamenti;
+    private List<Ticket> tickets;
 }

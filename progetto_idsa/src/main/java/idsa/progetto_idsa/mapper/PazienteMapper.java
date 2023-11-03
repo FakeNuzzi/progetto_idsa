@@ -10,7 +10,9 @@ public class PazienteMapper{
             paziente.getNome(),
             paziente.getCognome(),
             paziente.getData_n(),
-            paziente.getCf()
+            paziente.getCf(),
+            paziente.getAppuntamenti(),
+            paziente.getTickets()
         );
     }    
 }

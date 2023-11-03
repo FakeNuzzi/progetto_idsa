@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import idsa.progetto_idsa.entity.Appuntamento;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,5 +23,5 @@ public class MedicoDto {
     private String cf;
     private Float stipendio;
     private String specializ;
-    private List<Long> appuntamenti;
+    private List<Appuntamento> appuntamenti;
 }
