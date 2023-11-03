@@ -3,3 +3,9 @@
 3 ) esegui la query create database idsa;
 4 ) apri la cartella java e poi la cartella entity e crea un file per ogni entità del database
 5 ) a questo punto se abbiamo fatto tutto correttamente facendo run del codice le tabelle create nei vari file dovrebbero generrsi mente anche nel nostro server
+
+FATTA
+
+1) Revisionare ER
+2) Rivedere Pom
+3) 
