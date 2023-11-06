@@ -31,20 +31,4 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
     private Paziente paziente;
-
-    public Long getId_ticket(){
-        return this.id_ticket;
-    }
-
-    public Float getPrezzo(){
-        return this.prezzo;
-    }
-
-    public Boolean getBoolean(){
-        return this.stato;
-    }
-
-    public Long getId_appuntamento(){
-        return this.appuntamento.getId_appuntamento();
-    }
 }

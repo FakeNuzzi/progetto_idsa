@@ -33,20 +33,4 @@ public class Referto {
     @JoinColumn(name = "Cartella_Id", referencedColumnName = "id_cartella")
     private Cartella cartella;
     
-    public Long getId_referto(){
-        return this.id_referto;
-    }
-
-    public String getTipo_vis(){
-        return this.tipo_vis;
-    }
-
-    public String getPrescr(){
-        return this.prescr;
-    }
-
-    public Long getId_appuntamento(){
-        return this.appuntamento.getId_appuntamento();
-    }
-    
 }

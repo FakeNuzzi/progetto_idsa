@@ -14,5 +14,17 @@ public class PazienteMapper{
             paziente.getAppuntamenti(),
             paziente.getTickets()
         );
+    }
+    
+    public static Paziente mapToPaziente(PazienteDto pazienteDto){
+        return new Paziente(
+            pazienteDto.getId_paziente(),
+            pazienteDto.getNome(),
+            pazienteDto.getCognome(),
+            pazienteDto.getData_n(),
+            pazienteDto.getCf(),
+            pazienteDto.getAppuntamenti(),
+            pazienteDto.getTickets()
+        );
     }    
 }

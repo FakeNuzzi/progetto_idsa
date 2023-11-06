@@ -4,8 +4,21 @@ import idsa.progetto_idsa.entity.Ticket;
 import idsa.progetto_idsa.dto.TicketDto;
 
 public class TicketMapper{
-    public static TicketDto mapToTicketDto(Ticket appuntamento){
+    public static TicketDto mapToTicketDto(Ticket ticket){
         return new TicketDto(
+            ticket.getId_ticket(),
+            ticket.getAppuntamento(),
+            ticket.getPrezzo(),
+            ticket.getStato()
         );
-    }    
+    }
+    
+    public static TicketDto mapToTicket(TicketDto ticketDto){
+        return new TicketDto(
+            ticketDto.getId_ticket(),
+            ticketDto.getAppuntamento(),
+            ticketDto.getPrezzo(),
+            ticketDto.getStato()
+        );
+    }
 }
