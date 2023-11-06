@@ -1,5 +1,6 @@
 package idsa.progetto_idsa.entity;
 
+import idsa.progetto_idsa.entityID.TicketID;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@IdClass(TicketID.class)
 @Entity
 @Table(name = "Ticket")
 public class Ticket {
@@ -27,11 +28,9 @@ public class Ticket {
     @Column(name = "Stato", nullable = false)
     private Boolean stato;
 
-    /*
     @ManyToOne
     @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
     private Paziente paziente;
-    */
 
     public Long getId_ticket(){
         return this.id_ticket;

@@ -9,6 +9,10 @@ public class AppuntamentoMapper{
             appuntamento.getId_appuntamento(),
             appuntamento.getData(),
             appuntamento.getTipo_visita()
+            /*
+            appuntamento.getPaziente(),
+            appuntamento.getMedico()
+            */
         );
     } 
 
@@ -17,6 +21,10 @@ public class AppuntamentoMapper{
             appuntamentoDto.getId_appuntamento(),
             appuntamentoDto.getData(),
             appuntamentoDto.getTipo_visita()
+            /*
+            appuntamentoDto.getPaziente(),
+            appuntamentoDto.getMedico()
+            */
         );
     }
 }

@@ -23,14 +23,11 @@ public class Appuntamento {
     private Date data;
     @Column(name = "Tipo visita", nullable = false)
     private String tipo_visita;
-
     /*
     @ManyToOne
     @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
     private Paziente paziente;
-    */
-
-    /*
+    
     @ManyToOne
     @JoinColumn(name = "Medico_Id", referencedColumnName = "id_medico")
     private Medico medico;

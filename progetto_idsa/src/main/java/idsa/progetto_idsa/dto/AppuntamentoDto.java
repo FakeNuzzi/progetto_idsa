@@ -16,4 +16,8 @@ public class AppuntamentoDto {
     private Long id_appuntamento;
     private Date data;
     private String tipo_visita;
+    /*
+    private Paziente paziente;
+    private Medico medico;
+    */
 }
