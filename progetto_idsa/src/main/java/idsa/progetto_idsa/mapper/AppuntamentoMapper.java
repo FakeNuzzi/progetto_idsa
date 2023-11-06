@@ -8,11 +8,9 @@ public class AppuntamentoMapper{
         return new AppuntamentoDto(
             appuntamento.getId_appuntamento(),
             appuntamento.getData(),
-            appuntamento.getTipo_visita()
-            /*
+            appuntamento.getTipo_visita(),
             appuntamento.getPaziente(),
             appuntamento.getMedico()
-            */
         );
     } 
 
@@ -20,11 +18,9 @@ public class AppuntamentoMapper{
         return new Appuntamento(
             appuntamentoDto.getId_appuntamento(),
             appuntamentoDto.getData(),
-            appuntamentoDto.getTipo_visita()
-            /*
+            appuntamentoDto.getTipo_visita(),
             appuntamentoDto.getPaziente(),
             appuntamentoDto.getMedico()
-            */
         );
     }
 }

@@ -30,8 +30,10 @@ public class Paziente {
     @Column(name = "Codice Fiscale", nullable = false, unique = true)
     private String cf;
 
+    /*
     @OneToMany
     private List<Appuntamento> appuntamenti;
+    */
 
     @OneToMany
     private List<Ticket> tickets;
@@ -56,6 +58,7 @@ public class Paziente {
         return this.cf;
     }
 
+    /*
     public List<Long> getId_appuntamenti(){
         List<Long> id_appuntamenti = new ArrayList<Long>();
         for(int i=0; i<this.appuntamenti.size();i++){
@@ -63,7 +66,7 @@ public class Paziente {
         }
         return id_appuntamenti;
     }
-
+    */
     public List<Long> getId_tickets(){
         List<Long> id_tickets = new ArrayList<Long>();
         for(int i=0; i<this.tickets.size();i++){

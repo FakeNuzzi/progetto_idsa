@@ -34,8 +34,11 @@ public class Medico {
     @Column(name = "Specializzazione", nullable = false, unique = true)
     private String specializ;
 
+    /*
     @OneToMany
     private List<Appuntamento> appuntamenti = new ArrayList<Appuntamento>();
+    */
+
 
     public Long getId_medico(){
         return this.id_medico;
@@ -64,7 +67,7 @@ public class Medico {
     public String getSpecializ(){
         return this.specializ;
     }
-
+    /*
     public List<Long> getId_appuntamenti(){
         List<Long> id_appuntamenti = new ArrayList<Long>();
         for(int i=0; i<this.appuntamenti.size();i++){
@@ -72,4 +75,5 @@ public class Medico {
         }
         return id_appuntamenti;
     }
+    */
 }

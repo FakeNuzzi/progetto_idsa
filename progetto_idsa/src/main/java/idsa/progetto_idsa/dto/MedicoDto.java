@@ -23,5 +23,5 @@ public class MedicoDto {
     private String cf;
     private Float stipendio;
     private String specializ;
-    private List<Appuntamento> appuntamenti;
+    //private List<Appuntamento> appuntamenti;
 }

@@ -12,8 +12,8 @@ public class MedicoMapper{
             medico.getData_n(),
             medico.getCf(),
             medico.getStipendio(),
-            medico.getSpecializ(),
-            medico.getAppuntamenti()
+            medico.getSpecializ()
+            //medico.getAppuntamenti()
         );
     }
 
@@ -25,8 +25,8 @@ public class MedicoMapper{
             medicoDto.getData_n(),
             medicoDto.getCf(),
             medicoDto.getStipendio(),
-            medicoDto.getSpecializ(),
-            medicoDto.getAppuntamenti()
+            medicoDto.getSpecializ()
+            //medicoDto.getAppuntamenti()
         );
     }     
 }
