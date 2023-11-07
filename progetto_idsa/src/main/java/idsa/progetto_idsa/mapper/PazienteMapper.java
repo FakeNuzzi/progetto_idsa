@@ -11,7 +11,6 @@ public class PazienteMapper{
             paziente.getCognome(),
             paziente.getData_n(),
             paziente.getCf(),
-            //paziente.getAppuntamenti(),
             paziente.getTickets()
         );
     }
@@ -23,7 +22,6 @@ public class PazienteMapper{
             pazienteDto.getCognome(),
             pazienteDto.getData_n(),
             pazienteDto.getCf(),
-            //pazienteDto.getAppuntamenti(),
             pazienteDto.getTickets()
         );
     }    

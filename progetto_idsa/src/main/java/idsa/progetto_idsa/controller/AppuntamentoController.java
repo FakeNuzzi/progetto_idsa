@@ -2,6 +2,8 @@ package idsa.progetto_idsa.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +22,11 @@ public class AppuntamentoController {
     public ResponseEntity<AppuntamentoDto> createAppuntamento(@RequestBody AppuntamentoDto appuntamentoDto){
         AppuntamentoDto savedAppuntamento = appuntamentoService.createAppuntamento(appuntamentoDto);
         return new ResponseEntity<>(savedAppuntamento,HttpStatus.CREATED);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<AppuntamentoDto> getAppuntamentoById(@PathVariable("id" )Long id_appuntamento){
+        AppuntamentoDto appuntamentDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
+        return ResponseEntity.ok(appuntamentDto);
     }
 }

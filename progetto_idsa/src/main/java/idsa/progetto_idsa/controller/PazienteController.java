@@ -1,7 +1,7 @@
 package idsa.progetto_idsa.controller;
 
-import idsa.progetto_idsa.dto.TicketDto;
-import idsa.progetto_idsa.service.TicketService;
+import idsa.progetto_idsa.dto.PazienteDto;
+import idsa.progetto_idsa.service.PazienteService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/ticket")
+@RequestMapping("/api/paziente")
 @AllArgsConstructor
-public class TicketController {
-    private TicketService ticketService;
+public class PazienteController {
+    private PazienteService pazienteService;
     @PostMapping
-    public ResponseEntity<TicketDto> createTicket(@RequestBody TicketDto ticketDto){
-        TicketDto savedTicket = ticketService.createTicket(ticketDto);
-        return new ResponseEntity<>(savedTicket,HttpStatus.CREATED);
+    public ResponseEntity<PazienteDto> createPaziente(@RequestBody PazienteDto pazienteDto){
+        PazienteDto savedPaziente = pazienteService.createPaziente(pazienteDto);
+        return new ResponseEntity<>(savedPaziente,HttpStatus.CREATED);
     }
 }

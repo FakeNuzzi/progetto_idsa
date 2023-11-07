@@ -1,14 +1,11 @@
 package idsa.progetto_idsa.dto;
 
 import java.sql.Date;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import idsa.progetto_idsa.entity.Appuntamento;
 
 @Getter
 @Setter
