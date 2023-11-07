@@ -9,16 +9,18 @@ public class TicketMapper{
             ticket.getId_ticket(),
             ticket.getAppuntamento(),
             ticket.getPrezzo(),
-            ticket.getStato()
+            ticket.getStato(),
+            ticket.getPaziente()
         );
     }
     
-    public static TicketDto mapToTicket(TicketDto ticketDto){
-        return new TicketDto(
+    public static Ticket mapToTicket(TicketDto ticketDto){
+        return new Ticket(
             ticketDto.getId_ticket(),
             ticketDto.getAppuntamento(),
             ticketDto.getPrezzo(),
-            ticketDto.getStato()
+            ticketDto.getStato(),
+            ticketDto.getPaziente()
         );
     }
 }

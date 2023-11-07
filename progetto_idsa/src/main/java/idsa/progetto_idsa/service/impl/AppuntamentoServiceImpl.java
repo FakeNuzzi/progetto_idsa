@@ -1,5 +1,6 @@
 package idsa.progetto_idsa.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import idsa.progetto_idsa.dto.AppuntamentoDto;
@@ -9,6 +10,7 @@ import idsa.progetto_idsa.repository.AppuntamentoRepository;
 import idsa.progetto_idsa.service.AppuntamentoService;
 
 @Service
+@AllArgsConstructor
 public class AppuntamentoServiceImpl implements AppuntamentoService{
     private AppuntamentoRepository appunamentoRepository;
     @Override
