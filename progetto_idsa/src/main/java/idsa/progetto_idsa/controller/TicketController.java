@@ -1,11 +1,14 @@
 package idsa.progetto_idsa.controller;
 
 import idsa.progetto_idsa.dto.TicketDto;
+import idsa.progetto_idsa.entityID.TicketID;
 import idsa.progetto_idsa.service.TicketService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +23,11 @@ public class TicketController {
     public ResponseEntity<TicketDto> createTicket(@RequestBody TicketDto ticketDto){
         TicketDto savedTicket = ticketService.createTicket(ticketDto);
         return new ResponseEntity<>(savedTicket,HttpStatus.CREATED);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<TicketDto> getTicketById(@PathVariable("id")TicketID id_ticket){
+        TicketDto appuntamentDto = ticketService.getTicketById(id_ticket);
+        return ResponseEntity.ok(appuntamentDto);
     }
 }

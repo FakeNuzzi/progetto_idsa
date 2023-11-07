@@ -25,7 +25,7 @@ public class AppuntamentoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<AppuntamentoDto> getAppuntamentoById(@PathVariable("id" )Long id_appuntamento){
+    public ResponseEntity<AppuntamentoDto> getAppuntamentoById(@PathVariable("id")Long id_appuntamento){
         AppuntamentoDto appuntamentDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
         return ResponseEntity.ok(appuntamentDto);
     }
