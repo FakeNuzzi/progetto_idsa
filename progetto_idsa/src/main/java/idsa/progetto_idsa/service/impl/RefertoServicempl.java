@@ -39,4 +39,18 @@ public class RefertoServicempl implements RefertoService {
         return referti.stream().map((referto) -> RefertoMapper.mapToRefertoDto(referto))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public RefertoDto updateReferto(RefertoID id_referto, RefertoDto updatedReferto){
+        Referto referto = refertoRepository.findById(id_referto)
+            .orElseThrow(() -> new ResourceNotFoundException("Referto non esiste per l'id dato : " + id_referto));
+        referto.setAppuntamento(updatedReferto.getAppuntamento());
+        referto.setTipo_vis(updatedReferto.getTipo_vis());
+        referto.setPrescr(updatedReferto.getPrescr());
+        referto.setCartella(updatedReferto.getCartella());
+
+        Referto updatedRefertoObj = refertoRepository.save(referto);
+
+        return RefertoMapper.mapToRefertoDto(updatedRefertoObj);
+    }
 }

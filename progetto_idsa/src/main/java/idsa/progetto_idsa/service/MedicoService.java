@@ -8,4 +8,5 @@ public interface MedicoService {
     MedicoDto createMedico(MedicoDto medicoDto);
     MedicoDto getMedicoById(Long id_medico);
     List<MedicoDto> getAllMedici();
+    MedicoDto updateMedico(Long id_medico, MedicoDto updatedMedico);
 }

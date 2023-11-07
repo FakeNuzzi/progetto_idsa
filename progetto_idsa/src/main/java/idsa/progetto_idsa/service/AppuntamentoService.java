@@ -8,4 +8,5 @@ public interface AppuntamentoService {
     AppuntamentoDto createAppuntamento(AppuntamentoDto appuntamentoDto);
     AppuntamentoDto getAppuntamentoById(Long id_appuntamento);
     List<AppuntamentoDto> getAllAppuntamenti();
+    AppuntamentoDto updateAppuntamento(Long id_appuntamento, AppuntamentoDto updatedAppuntamento);
 }

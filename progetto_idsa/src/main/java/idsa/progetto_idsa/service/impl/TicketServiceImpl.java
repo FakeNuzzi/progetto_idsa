@@ -39,4 +39,17 @@ public class TicketServiceImpl implements TicketService {
         return tickets.stream().map((ticket) -> TicketMapper.mapToTicketDto(ticket))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public TicketDto updateTicket(TicketID id_ticket, TicketDto updatedTicket){
+        Ticket ticket = ticketRepository.findById(id_ticket)
+            .orElseThrow(() -> new ResourceNotFoundException("Ticket non esiste per l'id dato : " + id_ticket));
+        ticket.setAppuntamento(updatedTicket.getAppuntamento());
+        ticket.setPrezzo(updatedTicket.getPrezzo());
+        ticket.setStato(updatedTicket.getStato());
+
+        Ticket updatedTicketObj = ticketRepository.save(ticket);
+
+        return TicketMapper.mapToTicketDto(updatedTicketObj);
+    }
 }

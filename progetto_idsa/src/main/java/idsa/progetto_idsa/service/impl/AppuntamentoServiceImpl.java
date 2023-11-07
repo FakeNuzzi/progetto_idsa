@@ -28,7 +28,7 @@ public class AppuntamentoServiceImpl implements AppuntamentoService{
     @Override
     public AppuntamentoDto getAppuntamentoById(Long id_appuntamento){
         Appuntamento appuntamento = appuntamentoRepository.findById(id_appuntamento)
-            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per un dato id : " + id_appuntamento));
+            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_appuntamento));
             return AppuntamentoMapper.mapToAppuntamentoDto(appuntamento);
     }
 
@@ -37,5 +37,19 @@ public class AppuntamentoServiceImpl implements AppuntamentoService{
         List<Appuntamento> appuntamenti = appuntamentoRepository.findAll();
         return appuntamenti.stream().map((appuntamento) -> AppuntamentoMapper.mapToAppuntamentoDto(appuntamento))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public AppuntamentoDto updateAppuntamento(Long id_appuntamento, AppuntamentoDto updatedAppuntamento){
+        Appuntamento appuntamento = appuntamentoRepository.findById(id_appuntamento)
+            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_appuntamento));
+        appuntamento.setData(updatedAppuntamento.getData());
+        appuntamento.setTipo_visita(updatedAppuntamento.getTipo_visita());
+        appuntamento.setMedico(updatedAppuntamento.getMedico());
+        appuntamento.setPaziente(updatedAppuntamento.getPaziente());
+
+        Appuntamento updatedAppuntamentoObj = appuntamentoRepository.save(appuntamento);
+
+        return AppuntamentoMapper.mapToAppuntamentoDto(updatedAppuntamentoObj);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,5 +38,11 @@ public class CartellaController {
     public ResponseEntity<List<CartellaDto>> getAllCartelle(){
         List<CartellaDto> cartelle = cartellaService.getAllCartelle();
         return ResponseEntity.ok(cartelle);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<CartellaDto> updateCartella(@PathVariable("id")CartellaID id_cartella, @RequestBody CartellaDto updatedCartella){
+        CartellaDto cartellaDto = cartellaService.updateCartella(id_cartella, updatedCartella);
+        return ResponseEntity.ok(cartellaDto);
     }
 }

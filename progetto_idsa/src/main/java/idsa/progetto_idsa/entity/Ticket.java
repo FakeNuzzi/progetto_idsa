@@ -23,7 +23,7 @@ public class Ticket {
     @MapsId
     private Appuntamento appuntamento;
 
-    @Column(name = "Costo", nullable = false)
+    @Column(name = "Prezzo", nullable = false)
     private Float prezzo;
     @Column(name = "Stato", nullable = false)
     private Boolean stato;

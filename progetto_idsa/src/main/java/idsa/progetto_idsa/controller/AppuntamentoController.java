@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +37,11 @@ public class AppuntamentoController {
     public ResponseEntity<List<AppuntamentoDto>> getAllAppuntamenti(){
         List<AppuntamentoDto> appuntamenti = appuntamentoService.getAllAppuntamenti();
         return ResponseEntity.ok(appuntamenti);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<AppuntamentoDto> updateAppuntamento(@PathVariable("id")Long id_appuntamento, @RequestBody AppuntamentoDto updatedAppuntamento){
+        AppuntamentoDto appuntamentoDto = appuntamentoService.updateAppuntamento(id_appuntamento, updatedAppuntamento);
+        return ResponseEntity.ok(appuntamentoDto);
     }
 }

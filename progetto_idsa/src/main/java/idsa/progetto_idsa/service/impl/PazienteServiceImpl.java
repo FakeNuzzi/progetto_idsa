@@ -38,4 +38,18 @@ public class PazienteServiceImpl implements PazienteService {
         return pazienti.stream().map((paziente) -> PazienteMapper.mapToPazienteDto(paziente))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public PazienteDto updatePaziente(Long id_paziente, PazienteDto updatedPaziente){
+        Paziente paziente = pazienteRepository.findById(id_paziente)
+            .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per l'id dato : " + id_paziente));
+        paziente.setNome(updatedPaziente.getNome());
+        paziente.setCognome(updatedPaziente.getCognome());
+        paziente.setData_n(updatedPaziente.getData_n());
+        paziente.setCf(updatedPaziente.getCf());
+
+        Paziente updatedPazienteObj = pazienteRepository.save(paziente);
+
+        return PazienteMapper.mapToPazienteDto(updatedPazienteObj);
+    }
 }

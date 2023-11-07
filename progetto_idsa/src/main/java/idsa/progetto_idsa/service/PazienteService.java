@@ -8,4 +8,5 @@ public interface PazienteService {
     PazienteDto createPaziente(PazienteDto pazienteDto);
     PazienteDto getPazienteById(Long id_paziente);
     List<PazienteDto> getAllPazienti();
+    PazienteDto updatePaziente(Long id_paziente, PazienteDto updatedPaziente);
 }

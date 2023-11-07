@@ -38,4 +38,20 @@ public class MedicoServiceImpl implements MedicoService {
         return medici.stream().map((medico) -> MedicoMapper.mapToMedicoDto(medico))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public MedicoDto updateMedico(Long id_medico, MedicoDto updatedMedico){
+        Medico medico = medicoRepository.findById(id_medico)
+            .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + id_medico));
+        medico.setNome(updatedMedico.getNome());
+        medico.setCognome(updatedMedico.getCognome());
+        medico.setData_n(updatedMedico.getData_n());
+        medico.setCf(updatedMedico.getCf());
+        medico.setStipendio(updatedMedico.getStipendio());
+        medico.setSpecializ(updatedMedico.getSpecializ());
+
+        Medico updatedMedicoObj = medicoRepository.save(medico);
+
+        return MedicoMapper.mapToMedicoDto(updatedMedicoObj);
+    }
 }

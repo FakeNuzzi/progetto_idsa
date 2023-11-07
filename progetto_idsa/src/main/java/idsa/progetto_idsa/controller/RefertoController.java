@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,5 +40,11 @@ public class RefertoController {
     public ResponseEntity<List<RefertoDto>> getAllReferti(){
         List<RefertoDto> referti = refertoService.getAllReferti();
         return ResponseEntity.ok(referti);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<RefertoDto> updateReferto(@PathVariable("id")RefertoID id_referto, @RequestBody RefertoDto updatedReferto){
+        RefertoDto refertoDto = refertoService.updateReferto(id_referto, updatedReferto);
+        return ResponseEntity.ok(refertoDto);
     }
 }

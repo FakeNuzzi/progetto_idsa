@@ -40,4 +40,16 @@ public class CartellaServiceImpl implements CartellaService {
         return cartelle.stream().map((cartella) -> CartellaMapper.mapToCartellaDto(cartella))
             .collect(Collectors.toList());
     }
+
+    @Override
+    public CartellaDto updateCartella(CartellaID id_cartella, CartellaDto updatedCartella){
+        Cartella cartella = cartellaRepository.findById(id_cartella)
+            .orElseThrow(() -> new ResourceNotFoundException("Cartella non esiste per l'id dato : " + id_cartella));
+        cartella.setPaziente(updatedCartella.getPaziente());
+        cartella.setReferti(updatedCartella.getReferti());
+
+        Cartella updatedCartellaObj = cartellaRepository.save(cartella);
+
+        return CartellaMapper.mapToCartellaDto(updatedCartellaObj);
+    }
 }

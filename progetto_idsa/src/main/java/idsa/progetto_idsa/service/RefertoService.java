@@ -9,4 +9,5 @@ public interface RefertoService {
     RefertoDto createReferto(RefertoDto refertoDto);
     RefertoDto getRefertoById(RefertoID id_referto);
     List<RefertoDto> getAllReferti();
+    RefertoDto updateReferto(RefertoID id_referto, RefertoDto updatedReferto);
 }
