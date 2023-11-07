@@ -13,17 +13,17 @@ import idsa.progetto_idsa.service.AppuntamentoService;
 @Service
 @AllArgsConstructor
 public class AppuntamentoServiceImpl implements AppuntamentoService{
-    private AppuntamentoRepository appunamentoRepository;
+    private AppuntamentoRepository appuntamentoRepository;
     @Override
     public AppuntamentoDto createAppuntamento(AppuntamentoDto appuntamentoDto) {
         Appuntamento appuntamento = AppuntamentoMapper.mapToAppuntamento(appuntamentoDto);
-        Appuntamento savedAppuntamento = appunamentoRepository.save(appuntamento);
+        Appuntamento savedAppuntamento = appuntamentoRepository.save(appuntamento);
         return AppuntamentoMapper.mapToAppuntamentoDto(savedAppuntamento);
     }
-    @Override
     
+    @Override
     public AppuntamentoDto getAppuntamentoById(Long id_appuntamento){
-        Appuntamento appuntamento = appunamentoRepository.findById(id_appuntamento)
+        Appuntamento appuntamento = appuntamentoRepository.findById(id_appuntamento)
             .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per un dato id : " + id_appuntamento));
             return AppuntamentoMapper.mapToAppuntamentoDto(appuntamento);
     }
