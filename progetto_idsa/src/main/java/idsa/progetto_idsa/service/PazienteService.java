@@ -9,4 +9,5 @@ public interface PazienteService {
     PazienteDto getPazienteById(Long id_paziente);
     List<PazienteDto> getAllPazienti();
     PazienteDto updatePaziente(Long id_paziente, PazienteDto updatedPaziente);
+    void deletePaziente(Long id_paziente);
 }

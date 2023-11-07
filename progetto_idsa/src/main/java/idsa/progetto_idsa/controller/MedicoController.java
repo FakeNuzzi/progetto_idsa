@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,5 +45,11 @@ public class MedicoController {
     public ResponseEntity<MedicoDto> updateMedico(@PathVariable("id")Long id_medico, @RequestBody MedicoDto updatedMedico){
         MedicoDto medicoDto = medicoService.updateMedico(id_medico, updatedMedico);
         return ResponseEntity.ok(medicoDto);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteMedico(@PathVariable("id")Long id_medico){
+        medicoService.deleteMedico(id_medico);
+        return ResponseEntity.ok("Medico cancellato con successo");
     }
 }

@@ -53,4 +53,11 @@ public class RefertoServicempl implements RefertoService {
 
         return RefertoMapper.mapToRefertoDto(updatedRefertoObj);
     }
+
+    @Override
+    public void deleteReferto(RefertoID id_referto){
+        refertoRepository.findById(id_referto)
+            .orElseThrow(() -> new ResourceNotFoundException("Referto non esiste per l'id dato : " + id_referto));
+        refertoRepository.deleteById(id_referto);
+    }
 }

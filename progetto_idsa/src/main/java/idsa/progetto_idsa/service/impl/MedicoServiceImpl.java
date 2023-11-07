@@ -54,4 +54,11 @@ public class MedicoServiceImpl implements MedicoService {
 
         return MedicoMapper.mapToMedicoDto(updatedMedicoObj);
     }
+
+    @Override
+    public void deleteMedico(Long id_medico){
+        medicoRepository.findById(id_medico)
+            .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + id_medico));
+        medicoRepository.deleteById(id_medico);
+    }
 }

@@ -52,4 +52,11 @@ public class AppuntamentoServiceImpl implements AppuntamentoService{
 
         return AppuntamentoMapper.mapToAppuntamentoDto(updatedAppuntamentoObj);
     }
+
+    @Override
+    public void deleteAppuntamento(Long id_appuntamento){
+        appuntamentoRepository.findById(id_appuntamento)
+            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_appuntamento));
+        appuntamentoRepository.deleteById(id_appuntamento);
+    }
 }

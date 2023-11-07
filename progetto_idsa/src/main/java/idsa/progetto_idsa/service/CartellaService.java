@@ -10,4 +10,5 @@ public interface CartellaService{
     CartellaDto getCartellaById(CartellaID id_cartella);
     List<CartellaDto> getAllCartelle();
     CartellaDto updateCartella(CartellaID id_cartella, CartellaDto updatedCartella);
+    void deleteCartella(CartellaID id_cartella);
 }

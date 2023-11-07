@@ -10,4 +10,5 @@ public interface RefertoService {
     RefertoDto getRefertoById(RefertoID id_referto);
     List<RefertoDto> getAllReferti();
     RefertoDto updateReferto(RefertoID id_referto, RefertoDto updatedReferto);
+    void deleteReferto(RefertoID id_referto);
 }

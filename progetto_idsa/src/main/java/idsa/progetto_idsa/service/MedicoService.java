@@ -9,4 +9,5 @@ public interface MedicoService {
     MedicoDto getMedicoById(Long id_medico);
     List<MedicoDto> getAllMedici();
     MedicoDto updateMedico(Long id_medico, MedicoDto updatedMedico);
+    void deleteMedico(Long id_medico);
 }

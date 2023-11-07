@@ -52,4 +52,11 @@ public class TicketServiceImpl implements TicketService {
 
         return TicketMapper.mapToTicketDto(updatedTicketObj);
     }
+
+    @Override
+    public void deleteTicket(TicketID id_ticket){
+        ticketRepository.findById(id_ticket)
+            .orElseThrow(() -> new ResourceNotFoundException("Ticket non esiste per l'id dato : " + id_ticket));
+        ticketRepository.deleteById(id_ticket);
+    }
 }

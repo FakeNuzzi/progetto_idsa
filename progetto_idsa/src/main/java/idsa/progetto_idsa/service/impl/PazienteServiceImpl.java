@@ -52,4 +52,11 @@ public class PazienteServiceImpl implements PazienteService {
 
         return PazienteMapper.mapToPazienteDto(updatedPazienteObj);
     }
+
+    @Override
+    public void deletePaziente(Long id_paziente){
+        pazienteRepository.findById(id_paziente)
+            .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per l'id dato : " + id_paziente));
+        pazienteRepository.deleteById(id_paziente);
+    }
 }

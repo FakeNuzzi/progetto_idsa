@@ -10,4 +10,5 @@ public interface TicketService {
     TicketDto getTicketById(TicketID id_ticket);
     List<TicketDto> getAllTickets();
     TicketDto updateTicket(TicketID id_ticket, TicketDto updatedTicket);
+    void deleteTicket(TicketID id_ticket);
 }

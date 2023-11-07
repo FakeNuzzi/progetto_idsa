@@ -52,4 +52,11 @@ public class CartellaServiceImpl implements CartellaService {
 
         return CartellaMapper.mapToCartellaDto(updatedCartellaObj);
     }
+
+    @Override
+    public void deleteCartella(CartellaID id_cartella){
+        cartellaRepository.findById(id_cartella)
+            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_cartella));
+        cartellaRepository.deleteById(id_cartella);
+    }
 }

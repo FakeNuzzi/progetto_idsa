@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +31,8 @@ public class CartellaController {
 
     @GetMapping("{id}")
     public ResponseEntity<CartellaDto> getCartellaById(@PathVariable("id")CartellaID id_cartella){
-        CartellaDto appuntamentDto = cartellaService.getCartellaById(id_cartella);
-        return ResponseEntity.ok(appuntamentDto);
+        CartellaDto cartellaDto = cartellaService.getCartellaById(id_cartella);
+        return ResponseEntity.ok(cartellaDto);
     }
 
     @GetMapping
@@ -44,5 +45,11 @@ public class CartellaController {
     public ResponseEntity<CartellaDto> updateCartella(@PathVariable("id")CartellaID id_cartella, @RequestBody CartellaDto updatedCartella){
         CartellaDto cartellaDto = cartellaService.updateCartella(id_cartella, updatedCartella);
         return ResponseEntity.ok(cartellaDto);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteCartella(@PathVariable("id")CartellaID id_cartella){
+        cartellaService.deleteCartella(id_cartella);
+        return ResponseEntity.ok("Cartella cancellato con successo");
     }
 }
