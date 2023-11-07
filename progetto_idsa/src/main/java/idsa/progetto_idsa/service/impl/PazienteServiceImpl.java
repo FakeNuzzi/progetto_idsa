@@ -7,6 +7,10 @@ import idsa.progetto_idsa.mapper.PazienteMapper;
 import idsa.progetto_idsa.repository.PazienteRepository;
 import idsa.progetto_idsa.service.PazienteService;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,5 +30,12 @@ public class PazienteServiceImpl implements PazienteService {
         Paziente paziente = pazienteRepository.findById(id_paziente)
             .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per un dato id : " + id_paziente));
             return PazienteMapper.mapToPazienteDto(paziente);
+    }
+
+    @Override
+    public List<PazienteDto> getAllPazienti(){
+        List<Paziente> pazienti = pazienteRepository.findAll();
+        return pazienti.stream().map((paziente) -> PazienteMapper.mapToPazienteDto(paziente))
+            .collect(Collectors.toList());
     }
 }

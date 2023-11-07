@@ -8,6 +8,10 @@ import idsa.progetto_idsa.mapper.TicketMapper;
 import idsa.progetto_idsa.repository.TicketRepository;
 import idsa.progetto_idsa.service.TicketService;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,5 +31,12 @@ public class TicketServiceImpl implements TicketService {
         Ticket ticket = ticketRepository.findById(id_ticket)
             .orElseThrow(() -> new ResourceNotFoundException("Ticket non esiste per un dato id : " + id_ticket));
             return TicketMapper.mapToTicketDto(ticket);
+    }
+
+    @Override
+    public List<TicketDto> getAllTickets(){
+        List<Ticket> tickets = ticketRepository.findAll();
+        return tickets.stream().map((ticket) -> TicketMapper.mapToTicketDto(ticket))
+            .collect(Collectors.toList());
     }
 }

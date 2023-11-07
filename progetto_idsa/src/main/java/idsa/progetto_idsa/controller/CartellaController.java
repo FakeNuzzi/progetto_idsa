@@ -5,6 +5,8 @@ import idsa.progetto_idsa.entityID.CartellaID;
 import idsa.progetto_idsa.service.CartellaService;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,5 +31,11 @@ public class CartellaController {
     public ResponseEntity<CartellaDto> getCartellaById(@PathVariable("id")CartellaID id_cartella){
         CartellaDto appuntamentDto = cartellaService.getCartellaById(id_cartella);
         return ResponseEntity.ok(appuntamentDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CartellaDto>> getAllCartelle(){
+        List<CartellaDto> cartelle = cartellaService.getAllCartelle();
+        return ResponseEntity.ok(cartelle);
     }
 }

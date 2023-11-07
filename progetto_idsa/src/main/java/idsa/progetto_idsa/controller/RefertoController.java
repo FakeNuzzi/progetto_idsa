@@ -1,9 +1,12 @@
 package idsa.progetto_idsa.controller;
 
 import idsa.progetto_idsa.dto.RefertoDto;
+
 import idsa.progetto_idsa.entityID.RefertoID;
 import idsa.progetto_idsa.service.RefertoService;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +31,13 @@ public class RefertoController {
 
     @GetMapping("{id}")
     public ResponseEntity<RefertoDto> getRefertoById(@PathVariable("id")RefertoID id_referto){
-        RefertoDto appuntamentDto = refertoService.getRefertoById(id_referto);
-        return ResponseEntity.ok(appuntamentDto);
+        RefertoDto refertDto = refertoService.getRefertoById(id_referto);
+        return ResponseEntity.ok(refertDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<RefertoDto>> getAllReferti(){
+        List<RefertoDto> referti = refertoService.getAllReferti();
+        return ResponseEntity.ok(referti);
     }
 }

@@ -8,6 +8,10 @@ import idsa.progetto_idsa.mapper.RefertoMapper;
 import idsa.progetto_idsa.repository.RefertoRepository;
 import idsa.progetto_idsa.service.RefertoService;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,5 +31,12 @@ public class RefertoServicempl implements RefertoService {
         Referto referto = refertoRepository.findById(id_referto)
             .orElseThrow(() -> new ResourceNotFoundException("Referto non esiste per un dato id : " + id_referto));
             return RefertoMapper.mapToRefertoDto(referto);
+    }
+
+    @Override
+    public List<RefertoDto> getAllReferti(){
+        List<Referto> referti = refertoRepository.findAll();
+        return referti.stream().map((referto) -> RefertoMapper.mapToRefertoDto(referto))
+            .collect(Collectors.toList());
     }
 }

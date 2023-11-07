@@ -8,6 +8,10 @@ import idsa.progetto_idsa.mapper.CartellaMapper;
 import idsa.progetto_idsa.repository.CartellaRepository;
 import idsa.progetto_idsa.service.CartellaService;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 
@@ -28,5 +32,12 @@ public class CartellaServiceImpl implements CartellaService {
         Cartella cartella = cartellaRepository.findById(id_cartella)
             .orElseThrow(() -> new ResourceNotFoundException("Cartella non esiste per un dato id : " + id_cartella));
             return CartellaMapper.mapToCartellaDto(cartella);
+    }
+
+    @Override
+    public List<CartellaDto> getAllCartelle(){
+        List<Cartella> cartelle = cartellaRepository.findAll();
+        return cartelle.stream().map((cartella) -> CartellaMapper.mapToCartellaDto(cartella))
+            .collect(Collectors.toList());
     }
 }

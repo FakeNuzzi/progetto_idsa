@@ -5,6 +5,8 @@ import idsa.progetto_idsa.entityID.TicketID;
 import idsa.progetto_idsa.service.TicketService;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,5 +31,11 @@ public class TicketController {
     public ResponseEntity<TicketDto> getTicketById(@PathVariable("id")TicketID id_ticket){
         TicketDto appuntamentDto = ticketService.getTicketById(id_ticket);
         return ResponseEntity.ok(appuntamentDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TicketDto>> getAllTickets(){
+        List<TicketDto> tickets = ticketService.getAllTickets();
+        return ResponseEntity.ok(tickets);
     }
 }

@@ -1,6 +1,10 @@
 package idsa.progetto_idsa.service.impl;
 
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import idsa.progetto_idsa.dto.AppuntamentoDto;
@@ -26,5 +30,12 @@ public class AppuntamentoServiceImpl implements AppuntamentoService{
         Appuntamento appuntamento = appuntamentoRepository.findById(id_appuntamento)
             .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per un dato id : " + id_appuntamento));
             return AppuntamentoMapper.mapToAppuntamentoDto(appuntamento);
+    }
+
+    @Override
+    public List<AppuntamentoDto> getAllAppuntamenti(){
+        List<Appuntamento> appuntamenti = appuntamentoRepository.findAll();
+        return appuntamenti.stream().map((appuntamento) -> AppuntamentoMapper.mapToAppuntamentoDto(appuntamento))
+            .collect(Collectors.toList());
     }
 }

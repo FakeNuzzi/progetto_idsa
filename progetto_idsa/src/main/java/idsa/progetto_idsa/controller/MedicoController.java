@@ -5,6 +5,8 @@ import idsa.progetto_idsa.dto.MedicoDto;
 import idsa.progetto_idsa.service.MedicoService;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,13 @@ public class MedicoController {
 
     @GetMapping("{id}")
     public ResponseEntity<MedicoDto> getMedicoById(@PathVariable("id")Long id_medico){
-        MedicoDto appuntamentDto = medicoService.getMedicoById(id_medico);
-        return ResponseEntity.ok(appuntamentDto);
+        MedicoDto medicDto = medicoService.getMedicoById(id_medico);
+        return ResponseEntity.ok(medicDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MedicoDto>> getAllMedici(){
+        List<MedicoDto> medici = medicoService.getAllMedici();
+        return ResponseEntity.ok(medici);
     }
 }

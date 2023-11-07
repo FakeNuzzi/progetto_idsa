@@ -4,6 +4,8 @@ import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.service.PazienteService;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,5 +30,11 @@ public class PazienteController {
     public ResponseEntity<PazienteDto> getPazienteById(@PathVariable("id")Long id_paziente){
         PazienteDto appuntamentDto = pazienteService.getPazienteById(id_paziente);
         return ResponseEntity.ok(appuntamentDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PazienteDto>> getAllPazienti(){
+        List<PazienteDto> pazienti = pazienteService.getAllPazienti();
+        return ResponseEntity.ok(pazienti);
     }
 }
