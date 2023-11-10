@@ -1,9 +1,9 @@
 package idsa.progetto_idsa.dto;
 
 import java.sql.Date;
-import java.util.List;
+//import java.util.List;
 
-import idsa.progetto_idsa.entity.Ticket;
+//import idsa.progetto_idsa.entity.Ticket;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

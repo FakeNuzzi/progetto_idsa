@@ -1,6 +1,6 @@
 package idsa.progetto_idsa.entity;
 
-import java.util.List;
+//import java.util.List;
 import java.sql.Date;
 
 import jakarta.persistence.*;
