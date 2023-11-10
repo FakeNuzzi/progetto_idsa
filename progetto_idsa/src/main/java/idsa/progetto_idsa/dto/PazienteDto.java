@@ -21,5 +21,5 @@ public class PazienteDto {
     private String cognome;
     private Date data_n;
     private String cf;
-    private List<Ticket> tickets;
+    //private List<Ticket> tickets;
 }
