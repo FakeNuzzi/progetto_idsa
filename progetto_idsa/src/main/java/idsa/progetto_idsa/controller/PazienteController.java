@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/paziente")
 @CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/pazienti")
 @AllArgsConstructor
 public class PazienteController {
     private PazienteService pazienteService;
