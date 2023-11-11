@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/frontend-idsa/frontend-idsa.iml" filepath="$PROJECT_DIR$/frontend-idsa/frontend-idsa.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/progetto_idsa (1).iml" filepath="$PROJECT_DIR$/.idea/progetto_idsa (1).iml" />
     </modules>
   </component>
