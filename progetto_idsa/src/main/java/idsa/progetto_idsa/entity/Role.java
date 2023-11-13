@@ -1,5 +1,8 @@
 package idsa.progetto_idsa.entity;
 
-public class Role {
-
+public enum Role {
+    USER,
+    ADMIN,
+    DOCTOR,
+    HR
 }
