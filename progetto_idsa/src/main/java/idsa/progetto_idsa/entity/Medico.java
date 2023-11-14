@@ -25,7 +25,8 @@ public class Medico{
     private String specializ;
 
     @OneToOne
-    @JoinColumn(name = "Utente_Id", referencedColumnName = "id_utente")
+    @JoinColumn(name = "user_Id", referencedColumnName = "id_utente")
+    @MapsId
     private User user_Id;
 
 
