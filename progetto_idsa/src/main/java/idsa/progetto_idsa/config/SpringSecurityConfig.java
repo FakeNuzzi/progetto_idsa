@@ -53,30 +53,4 @@ public class SpringSecurityConfig {
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
-
-    //ok
-    //utenti di default per test
-    @Bean
-    public UserDetailsService userDetailsService(){
-
-        UserDetails user = User.builder()
-                .nome("user")
-                .cognome("user")
-                .email("user")
-                .password(passwordEncoder.encode("user"))
-                .cf("user")
-                .role(Role.USER)
-                .build();
-
-        UserDetails admin = User.builder()
-                .nome("admin")
-                .cognome("admin")
-                .email("admin")
-                .password(passwordEncoder.encode("admin"))
-                .cf("admin")
-                .role(Role.ADMIN)
-                .build();
-
-        return new InMemoryUserDetailsManager(user, admin);
-    }
 }
