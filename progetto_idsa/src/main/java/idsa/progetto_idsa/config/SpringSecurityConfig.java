@@ -41,6 +41,8 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/")
                     .permitAll()
+                    .requestMatchers(HttpMethod.OPTIONS,"/**")
+                    .permitAll()
                     .anyRequest()
                     .authenticated()
                 )
@@ -51,6 +53,9 @@ public class SpringSecurityConfig {
                 .addFilterBefore(jwtAuthentationFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
+
+        http.addFilterBefore(jwtAuthentationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }

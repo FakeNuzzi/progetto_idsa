@@ -30,8 +30,10 @@ public class User implements UserDetails {
     private String password;
     @OneToOne
     @JoinColumn(name = "role", referencedColumnName = "id_ruolo")
+    //assicurati che allo 0 corrisponda l utente con menoprivilegi di tutti
+    @Column(columnDefinition = "integer default 0")
     private Role role;
-    @Column(name = "attivo", nullable = false)
+    @Column(name = "attivo", columnDefinition = "boolean default true")
     private Boolean attivo;
 
     @Column(name = "Nome", nullable = false)

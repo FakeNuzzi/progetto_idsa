@@ -67,6 +67,18 @@ public class JwtService {
                 .getBody();
     }
 
+    private String getUsername(String token){
+        Claims claims = Jwts
+                .parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        String username = claims.getSubject();
+
+        return username;
+    }
+
     private Key getSigningKey(){
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);

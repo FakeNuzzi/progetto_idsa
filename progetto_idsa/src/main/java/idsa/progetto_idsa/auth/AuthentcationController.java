@@ -26,10 +26,10 @@ public class AuthentcationController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @PostMapping("/authenticate")
-    public ResponseEntity <String> Register(
+    public ResponseEntity <AuthenticationResponse> Register(
            @RequestBody Logindto request
     ){
-        String response =  service.authenticate(request);
+        AuthenticationResponse response =  service.authenticate(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

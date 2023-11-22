@@ -56,7 +56,7 @@ public class AuthenticationService {
         */
     }
     //ok;
-    public String authenticate(Logindto request){
+    public AuthenticationResponse authenticate(Logindto request){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -66,14 +66,14 @@ public class AuthenticationService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return "User logged in successfully";
-        /*
+
+
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken((UserDetails) user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
 
-         */
+
     }
 }
