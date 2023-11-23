@@ -19,18 +19,16 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_ticket;
     @OneToOne
-    @JoinColumn(name = "Appuntamento_Id", referencedColumnName = "id_appuntamento")
+    @JoinColumn(name = "Appuntamento", referencedColumnName = "id_appuntamento")
     @MapsId
-    private Appuntamento Appuntamento_Id;
+    private Appuntamento appuntamento;
 
-    @Column(name = "Nome", nullable = false)
-    private Float costo;
+    @Column(name = "Prezzo", nullable = false)
+    private Float prezzo;
     @Column(name = "Stato", nullable = false)
-    private Boolean stato;    
+    private Boolean stato;
 
-    //@ManyToOne
-    //@JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
-    //private Paziente paziente;
-
-
+    @ManyToOne
+    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
+    private Paziente paziente;
 }
