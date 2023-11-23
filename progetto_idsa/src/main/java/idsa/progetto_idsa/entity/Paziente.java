@@ -1,8 +1,5 @@
 package idsa.progetto_idsa.entity;
 
-import java.util.List;
-import java.sql.Date;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,20 +17,25 @@ public class Paziente{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_paziente;
-    @Column(name = "Nome", nullable = false)
-    private String nome;
-    @Column(name = "Cognome", nullable = false)
-    private String cognome;
-    @Column(name = "Data di nascita", nullable = false)
-    private Date data_n;
-    @Column(name = "Codice Fiscale", nullable = false, unique = true)
-    private String cf;
 
+
+    @OneToOne
+    @JoinColumn(name = "Utente_Id", referencedColumnName = "id_Utente")
+    private User user_id;
     //@OneToOne(mappedBy = "paziente")
     //private Cartella cartella;
 
+    /*
+>>>>>>> prova-onetoone-per-weak-entities
     @OneToMany
     private List<Appuntamento> appuntamenti;
+    */
 
+    /*
+    @OneToMany
+    private List<Ticket> ticket;
 
+=======
+    private List<Ticket> tickets;
+    */
 }

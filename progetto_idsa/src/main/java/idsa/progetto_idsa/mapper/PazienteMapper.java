@@ -7,21 +7,14 @@ public class PazienteMapper{
     public static PazienteDto mapToPazienteDto(Paziente paziente){
         return new PazienteDto(
             paziente.getId_paziente(),
-            paziente.getNome(),
-            paziente.getCognome(),
-            paziente.getData_n(),
-            paziente.getCf()
-            //paziente.getTickets()
+            paziente.getUser_id()
         );
     }
     
     public static Paziente mapToPaziente(PazienteDto pazienteDto){
         return new Paziente(
             pazienteDto.getId_paziente(),
-            pazienteDto.getNome(),
-            pazienteDto.getCognome(),
-            pazienteDto.getData_n(),
-            pazienteDto.getCf()
+            pazienteDto.getUser_id()
             //pazienteDto.getTickets()
         );
     }    

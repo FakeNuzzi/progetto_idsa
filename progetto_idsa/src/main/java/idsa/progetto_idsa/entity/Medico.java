@@ -1,6 +1,6 @@
 package idsa.progetto_idsa.entity;
 
-import java.util.List;
+// import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,11 +26,11 @@ public class Medico{
 
     @OneToOne
     @JoinColumn(name = "Utente_Id", referencedColumnName = "id_utente")
-    private User user_Id;
+    private User user_id;
 
-
+    /*
     @OneToMany
     private List<Appuntamento> appuntamenti;
-
+    */
 
 }
