@@ -1,6 +1,7 @@
 package idsa.progetto_idsa.controller;
 
 import idsa.progetto_idsa.dto.PazienteDto;
+import idsa.progetto_idsa.entityID.PazienteID;
 import idsa.progetto_idsa.service.PazienteService;
 import lombok.AllArgsConstructor;
 
@@ -32,7 +33,7 @@ public class PazienteController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<PazienteDto> getPazienteById(@PathVariable("id")Long id_paziente){
+    public ResponseEntity<PazienteDto> getPazienteById(@PathVariable("id")PazienteID id_paziente){
         PazienteDto pazienteDto = pazienteService.getPazienteById(id_paziente);
         return ResponseEntity.ok(pazienteDto);
     }
@@ -44,13 +45,13 @@ public class PazienteController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<PazienteDto> updatePaziente(@PathVariable("id")Long id_paziente, @RequestBody PazienteDto updatedPaziente){
+    public ResponseEntity<PazienteDto> updatePaziente(@PathVariable("id")PazienteID id_paziente, @RequestBody PazienteDto updatedPaziente){
         PazienteDto pazienteDto = pazienteService.updatePaziente(id_paziente, updatedPaziente);
         return ResponseEntity.ok(pazienteDto);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deletePaziente(@PathVariable("id")Long id_paziente){
+    public ResponseEntity<String> deletePaziente(@PathVariable("id")PazienteID id_paziente){
         pazienteService.deletePaziente(id_paziente);
         return ResponseEntity.ok("Paziente cancellato con successo");
     }

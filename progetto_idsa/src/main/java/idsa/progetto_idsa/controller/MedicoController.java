@@ -2,6 +2,7 @@ package idsa.progetto_idsa.controller;
 
 
 import idsa.progetto_idsa.dto.MedicoDto;
+import idsa.progetto_idsa.entityID.MedicoID;
 import idsa.progetto_idsa.service.MedicoService;
 import lombok.AllArgsConstructor;
 
@@ -32,7 +33,7 @@ public class MedicoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<MedicoDto> getMedicoById(@PathVariable("id")Long id_medico){
+    public ResponseEntity<MedicoDto> getMedicoById(@PathVariable("id")MedicoID id_medico){
         MedicoDto medicDto = medicoService.getMedicoById(id_medico);
         return ResponseEntity.ok(medicDto);
     }
@@ -44,13 +45,13 @@ public class MedicoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<MedicoDto> updateMedico(@PathVariable("id")Long id_medico, @RequestBody MedicoDto updatedMedico){
+    public ResponseEntity<MedicoDto> updateMedico(@PathVariable("id")MedicoID id_medico, @RequestBody MedicoDto updatedMedico){
         MedicoDto medicoDto = medicoService.updateMedico(id_medico, updatedMedico);
         return ResponseEntity.ok(medicoDto);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteMedico(@PathVariable("id")Long id_medico){
+    public ResponseEntity<String> deleteMedico(@PathVariable("id")MedicoID id_medico){
         medicoService.deleteMedico(id_medico);
         return ResponseEntity.ok("Medico cancellato con successo");
     }

@@ -2,6 +2,7 @@ package idsa.progetto_idsa.service.impl;
 
 import idsa.progetto_idsa.dto.MedicoDto;
 import idsa.progetto_idsa.entity.Medico;
+import idsa.progetto_idsa.entityID.MedicoID;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.MedicoMapper;
 import idsa.progetto_idsa.repository.MedicoRepository;
@@ -26,7 +27,7 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public MedicoDto getMedicoById(Long id_medico){
+    public MedicoDto getMedicoById(MedicoID id_medico){
         Medico medico = medicoRepository.findById(id_medico)
             .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per un dato id : " + id_medico));
             return MedicoMapper.mapToMedicoDto(medico);
@@ -40,7 +41,7 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public MedicoDto updateMedico(Long id_medico, MedicoDto updatedMedico){
+    public MedicoDto updateMedico(MedicoID id_medico, MedicoDto updatedMedico){
         Medico medico = medicoRepository.findById(id_medico)
             .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + id_medico));
         medico.setStipendio(updatedMedico.getStipendio());
@@ -51,7 +52,7 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public void deleteMedico(Long id_medico){
+    public void deleteMedico(MedicoID id_medico){
         medicoRepository.findById(id_medico)
             .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + id_medico));
         medicoRepository.deleteById(id_medico);

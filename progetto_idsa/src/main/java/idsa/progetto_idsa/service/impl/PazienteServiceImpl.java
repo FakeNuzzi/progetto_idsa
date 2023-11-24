@@ -2,6 +2,7 @@ package idsa.progetto_idsa.service.impl;
 
 import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.entity.Paziente;
+import idsa.progetto_idsa.entityID.PazienteID;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.PazienteMapper;
 import idsa.progetto_idsa.repository.PazienteRepository;
@@ -26,7 +27,7 @@ public class PazienteServiceImpl implements PazienteService {
     }
 
     @Override
-    public PazienteDto getPazienteById(Long id_paziente){
+    public PazienteDto getPazienteById(PazienteID id_paziente){
         Paziente paziente = pazienteRepository.findById(id_paziente)
             .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per un dato id : " + id_paziente));
             return PazienteMapper.mapToPazienteDto(paziente);
@@ -40,7 +41,7 @@ public class PazienteServiceImpl implements PazienteService {
     }
 
     @Override
-    public PazienteDto updatePaziente(Long id_paziente, PazienteDto updatedPaziente){
+    public PazienteDto updatePaziente(PazienteID id_paziente, PazienteDto updatedPaziente){
         Paziente paziente = pazienteRepository.findById(id_paziente)
             .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per l'id dato : " + id_paziente));
         Paziente updatedPazienteObj = pazienteRepository.save(paziente);
@@ -49,7 +50,7 @@ public class PazienteServiceImpl implements PazienteService {
     }
 
     @Override
-    public void deletePaziente(Long id_paziente){
+    public void deletePaziente(PazienteID id_paziente){
         pazienteRepository.findById(id_paziente)
             .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per l'id dato : " + id_paziente));
         pazienteRepository.deleteById(id_paziente);
