@@ -29,6 +29,6 @@ public class Ticket {
     private Boolean stato;
 
     @ManyToOne
-    @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
+    @JoinColumn(name = "PazienteID", referencedColumnName = "id_paziente")
     private Paziente paziente;
 }

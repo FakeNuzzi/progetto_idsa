@@ -1,5 +1,7 @@
 package idsa.progetto_idsa.entity;
 
+import idsa.progetto_idsa.entityID.MedicoID;
+
 // import java.util.List;
 
 import jakarta.persistence.*;
@@ -12,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@IdClass(MedicoID.class)
 @Entity
 @Table(name = "Medico")
 public class Medico{

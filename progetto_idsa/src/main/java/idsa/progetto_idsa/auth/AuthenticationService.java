@@ -1,9 +1,9 @@
 package idsa.progetto_idsa.auth;
 
 import idsa.progetto_idsa.config.JwtService;
-import idsa.progetto_idsa.dto.LoginDto;
+import idsa.progetto_idsa.dto.AuthenticationRequestDto;
 import idsa.progetto_idsa.dto.UserDto;
-import idsa.progetto_idsa.entity.Role;
+//import idsa.progetto_idsa.entity.Role;
 import idsa.progetto_idsa.entity.User;
 import idsa.progetto_idsa.exception.ApiException;
 import idsa.progetto_idsa.repository.UserRepository;
@@ -25,7 +25,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    private final Role role;
+    //private final Role role;
 
     //ok
     public String register(UserDto request){
@@ -56,7 +56,7 @@ public class AuthenticationService {
         */
     }
     //ok;
-    public AuthenticationResponse authenticate(LoginDto request){
+    public AuthenticationResponse authenticate(AuthenticationRequestDto request){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),

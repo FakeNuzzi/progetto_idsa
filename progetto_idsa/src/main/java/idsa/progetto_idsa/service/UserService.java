@@ -8,6 +8,6 @@ public interface UserService {
     UserDto createUser(UserDto userDto);
     UserDto getUserById(Long id_user);
     List<UserDto> getAllUsers();
-    UserDto updateUser(Long id_user, UserDto updatedPaziente);
+    UserDto updateUser(Long id_user, UserDto updatedUser);
     void deleteUser(Long id_user);
 }
