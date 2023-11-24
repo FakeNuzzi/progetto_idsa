@@ -20,8 +20,10 @@ public class Paziente{
 
 
     @OneToOne
-    @JoinColumn(name = "Utente_Id", referencedColumnName = "id_Utente")
+    @JoinColumn(name = "user_Id", referencedColumnName = "id_utente")
+    @MapsId
     private User user_id;
+
     //@OneToOne(mappedBy = "paziente")
     //private Cartella cartella;
 

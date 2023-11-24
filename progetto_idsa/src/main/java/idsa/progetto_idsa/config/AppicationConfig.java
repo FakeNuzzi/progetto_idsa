@@ -34,11 +34,13 @@ public class AppicationConfig {
         return authProvider;
     }
 
+    //ok
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    //ok
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
