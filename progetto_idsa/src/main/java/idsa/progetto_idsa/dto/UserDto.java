@@ -12,7 +12,8 @@ import java.sql.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Userdto {
+public class UserDto {
+    private Long id_utente;
     private String email;
     private String password;
 

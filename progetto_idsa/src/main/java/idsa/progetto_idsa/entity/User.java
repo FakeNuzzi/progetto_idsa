@@ -23,7 +23,7 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id_utente;
+    private Long id_utente;
     @Column(name = "email", nullable = false)
     private String email;
     @Column(name = "password", nullable = false)

@@ -1,8 +1,8 @@
 package idsa.progetto_idsa.auth;
 
 import idsa.progetto_idsa.config.JwtService;
-import idsa.progetto_idsa.dto.Logindto;
-import idsa.progetto_idsa.dto.Userdto;
+import idsa.progetto_idsa.dto.LoginDto;
+import idsa.progetto_idsa.dto.UserDto;
 import idsa.progetto_idsa.entity.Role;
 import idsa.progetto_idsa.entity.User;
 import idsa.progetto_idsa.exception.ApiException;
@@ -28,7 +28,7 @@ public class AuthenticationService {
     private final Role role;
 
     //ok
-    public String register(Userdto request){
+    public String register(UserDto request){
         if(repository.existsByEmail(request.getEmail())){
             throw new ApiException(HttpStatus.BAD_REQUEST, "email gia in uso");
         }
@@ -56,7 +56,7 @@ public class AuthenticationService {
         */
     }
     //ok;
-    public AuthenticationResponse authenticate(Logindto request){
+    public AuthenticationResponse authenticate(LoginDto request){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),

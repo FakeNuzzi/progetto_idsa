@@ -1,7 +1,7 @@
 package idsa.progetto_idsa.auth;
 
-import idsa.progetto_idsa.dto.Logindto;
-import idsa.progetto_idsa.dto.Userdto;
+import idsa.progetto_idsa.dto.LoginDto;
+import idsa.progetto_idsa.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +20,14 @@ public class AuthentcationController {
     //ok
     @PostMapping("/register")
     public ResponseEntity <String> Register(
-          @RequestBody  Userdto userdto
+          @RequestBody  UserDto userdto
     ){
         String response = service.register(userdto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @PostMapping("/authenticate")
     public ResponseEntity <AuthenticationResponse> Register(
-           @RequestBody Logindto request
+           @RequestBody LoginDto request
     ){
         AuthenticationResponse response =  service.authenticate(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
