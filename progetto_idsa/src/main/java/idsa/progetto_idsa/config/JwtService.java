@@ -1,11 +1,15 @@
 package idsa.progetto_idsa.config;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -14,60 +18,45 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-@Service
+@Component
+@NoArgsConstructor
+@AllArgsConstructor
 public class JwtService {
-
+    private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
     private static final String SECRET_KEY = "EA882D845C8EA843AE79E5E9BA9C7";
-    public String extractUsername(String token){
-        return extractClaim(token, Claims::getSubject);
-    }
 
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
-    }
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
-    }
+    public String generateJwtToken(Authentication authentication){
 
-    public String generateToken(
-            Map<String, Object> extraClaims,
-            UserDetails userDetails
-    ){
+        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+
         return Jwts
                 .builder()
-                .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(userPrincipal.getUsername())
                 .setIssuedAt( new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
-        final String username= extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    public boolean vaidateJwtToken(String authToken){
+        try{
+            Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parse(authToken);
+            return true;
+        }catch (MalformedJwtException e){
+            logger.error("invalid jwt token: {}", e.getMessage());
+        }catch (ExpiredJwtException e) {
+            logger.error("expired jwt token: {}", e.getMessage());
+        }catch (UnsupportedJwtException e) {
+            logger.error("unsupported jwt token: {}", e.getMessage());
+        }catch (IllegalArgumentException e) {
+            logger.error("illegal jwt token: {}", e.getMessage());
+        }
+
+        return false;
     }
 
-    private boolean isTokenExpired(String token){
-        return extractExpirtion(token).before(new Date());
-    }
-
-    private Date extractExpirtion(String token){
-        return extractClaim(token, Claims::getExpiration);
-    }
-
-    private Claims extractAllClaims(String token){
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(getSigningKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
-
-    private String getUsername(String token){
+    public String getUsernameFromJwtToken(String token){
         Claims claims = Jwts
                 .parserBuilder()
                 .setSigningKey(getSigningKey())
