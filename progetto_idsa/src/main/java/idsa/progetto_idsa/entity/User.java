@@ -2,14 +2,10 @@ package idsa.progetto_idsa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.sql.Date;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -19,19 +15,19 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="user" )
+@Table(name="users" )
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_utente;
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "username", nullable = false)
+    private String username;
     @Column(name = "password", nullable = false)
     private String password;
 
     //assumiamo che un utente posaavere piu ruoli
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable( name = "user_roles",joinColumns = @JoinColumn(name= "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable( name = "role_user",joinColumns = @JoinColumn(name= "utente"),inverseJoinColumns = @JoinColumn(name = "role"))
     private Set<Role> roles = new HashSet<>();
 
 
@@ -47,8 +43,8 @@ public class User {
     @Column(name = "Codice Fiscale", nullable = false, unique = true)
     private String cf;
 
-    public User(String email, String password, String nome, String cognome, Date data_n, String cf){
-        this.email = email;
+    public User(String username, String password, String nome, String cognome, Date data_n, String cf){
+        this.username = username;
         this.password = password;
         this.nome = nome;
         this.cognome = cognome;

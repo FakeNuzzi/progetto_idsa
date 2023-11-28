@@ -43,9 +43,9 @@ public class UserServiceImpl implements UserService {
     public UserDto updateUser(Long id_user, UserDto updatedUser){
         User user = userRepository.findById(id_user)
             .orElseThrow(() -> new ResourceNotFoundException("User non esiste per l'id dato : " + id_user));
-        user.setEmail(updatedUser.getEmail());
+        user.setUsername(updatedUser.getUsername());
         user.setPassword(updatedUser.getPassword());
-        user.setRole(updatedUser.getRole());
+        user.setRoles(updatedUser.getRoles());
         user.setAttivo(updatedUser.getAttivo());
         user.setNome(updatedUser.getNome());
         user.setCognome(updatedUser.getCognome());

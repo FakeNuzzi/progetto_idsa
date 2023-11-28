@@ -19,8 +19,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
-@NoArgsConstructor
-@AllArgsConstructor
+
+
 public class JwtService {
     private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
     private static final String SECRET_KEY = "EA882D845C8EA843AE79E5E9BA9C7";

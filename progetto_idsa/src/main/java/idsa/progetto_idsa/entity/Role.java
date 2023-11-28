@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -12,10 +15,12 @@ import lombok.Setter;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer role_id;
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
     private ERole name;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> utenti  = new HashSet<>();
 
     public Role(){
 

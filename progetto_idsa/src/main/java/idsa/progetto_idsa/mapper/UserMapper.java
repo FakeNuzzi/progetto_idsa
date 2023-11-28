@@ -7,9 +7,9 @@ public class UserMapper{
     public static UserDto mapToUserDto(User user){
         return new UserDto(
             user.getId_utente(),
-            user.getEmail(),
+            user.getUsername(),
             user.getPassword(),
-            user.getRole(),
+            user.getRoles(),
             user.getAttivo(),
             user.getNome(),
             user.getCognome(),
@@ -21,9 +21,9 @@ public class UserMapper{
     public static User mapToUser(UserDto userDto){
         return new User(
             userDto.getId_utente(),
-            userDto.getEmail(),
+            userDto.getUsername(),
             userDto.getPassword(),
-            userDto.getRole(),
+            userDto.getRoles(),
             userDto.getAttivo(),
             userDto.getNome(),
             userDto.getCognome(),

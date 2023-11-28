@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,10 +16,10 @@ import java.sql.Date;
 @AllArgsConstructor
 public class UserDto {
     private Long id_utente;
-    private String email;
+    private String username;
     private String password;
 
-    private Role role;
+    private Set<Role> roles = new HashSet<>();
     private Boolean attivo;
     private String nome;
     private String cognome;
