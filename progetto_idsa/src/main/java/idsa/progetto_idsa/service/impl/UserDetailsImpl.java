@@ -8,13 +8,11 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import idsa.progetto_idsa.entity.User;
 
-@Service
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 

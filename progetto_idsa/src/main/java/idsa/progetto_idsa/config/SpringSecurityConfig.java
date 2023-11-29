@@ -25,11 +25,6 @@ public class SpringSecurityConfig {
     @Autowired
     UserDetailsService userDetailsService;
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return super.userDetailsService();
-    }
-
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler;
 

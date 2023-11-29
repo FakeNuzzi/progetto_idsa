@@ -9,16 +9,16 @@ import idsa.progetto_idsa.entity.User;
 import idsa.progetto_idsa.repository.UserRepository;
 import idsa.progetto_idsa.service.UserDetailsService;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 
-@Service("userDetailsService")
-//@AllArgsConstructor
+@Service
+@AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
     @Override
     @Transactional
-  
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
