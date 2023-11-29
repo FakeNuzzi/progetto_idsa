@@ -3,20 +3,16 @@ package idsa.progetto_idsa.config;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
+
+import idsa.progetto_idsa.service.impl.UserDetailsImpl;
 
 @Component
 
@@ -28,7 +24,7 @@ public class JwtService {
 
     public String generateJwtToken(Authentication authentication){
 
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetails userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
         return Jwts
                 .builder()
