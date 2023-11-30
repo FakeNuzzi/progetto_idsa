@@ -34,6 +34,7 @@ public class Appuntamento {
     @JoinColumn(name = "Medico_Id", referencedColumnName = "id_medico")
     private Medico medico;
 
+    /*
     PazienteRepository pazienteRepository;
     MedicoRepository medicoRepository;
 
@@ -52,4 +53,5 @@ public class Appuntamento {
     public Long getMedico(){
         return this.medico.getId_medico();
     }
+    */
 }

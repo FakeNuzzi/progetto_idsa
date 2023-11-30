@@ -20,6 +20,9 @@ public class AppuntamentoDto {
     private Long id_appuntamento;
     private Date data;
     private String tipo_visita;
+    private Paziente paziente;
+    private Medico medico;
+    /*
     private Long paziente_id;
     private Long medico_id;
 
@@ -41,4 +44,5 @@ public class AppuntamentoDto {
     public Medico getMedico(){
         return medicoRepository.findById(medico_id).get();
     }
+    */
 }
