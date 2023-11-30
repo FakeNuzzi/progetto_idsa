@@ -14,10 +14,12 @@ import idsa.progetto_idsa.mapper.AppuntamentoMapper;
 import idsa.progetto_idsa.repository.AppuntamentoRepository;
 import idsa.progetto_idsa.service.AppuntamentoService;
 
+
 @Service
 @AllArgsConstructor
 public class AppuntamentoServiceImpl implements AppuntamentoService{
     private AppuntamentoRepository appuntamentoRepository;
+
     @Override
     public AppuntamentoDto createAppuntamento(AppuntamentoDto appuntamentoDto) {
         Appuntamento appuntamento = AppuntamentoMapper.mapToAppuntamento(appuntamentoDto);
