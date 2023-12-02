@@ -12,7 +12,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
 @Table(name = "Appuntamento")
 public class Appuntamento {

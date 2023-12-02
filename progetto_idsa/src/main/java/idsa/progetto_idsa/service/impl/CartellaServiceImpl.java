@@ -1,9 +1,13 @@
 package idsa.progetto_idsa.service.impl;
 
+import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.dto.CartellaDto;
+import idsa.progetto_idsa.dto.PazienteDto;
+import idsa.progetto_idsa.entity.Appuntamento;
 import idsa.progetto_idsa.entity.Cartella;
 import idsa.progetto_idsa.entityID.CartellaID;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
+import idsa.progetto_idsa.mapper.AppuntamentoMapper;
 import idsa.progetto_idsa.mapper.CartellaMapper;
 import idsa.progetto_idsa.repository.CartellaRepository;
 import idsa.progetto_idsa.service.CartellaService;
@@ -58,5 +62,11 @@ public class CartellaServiceImpl implements CartellaService {
         cartellaRepository.findById(id_cartella)
             .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_cartella));
         cartellaRepository.deleteById(id_cartella);
+    }
+
+    public List<CartellaDto> findByPaziente(PazienteDto pazienteDto){
+        List<Cartella> cartelle = cartellaRepository.findByPaziente(pazienteDto);
+        return cartelle.stream().map((cartella) -> CartellaMapper.mapToCartellaDto(cartella))
+                .collect(Collectors.toList());
     }
 }

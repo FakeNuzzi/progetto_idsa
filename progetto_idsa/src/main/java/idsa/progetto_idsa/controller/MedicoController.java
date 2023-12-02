@@ -2,6 +2,7 @@ package idsa.progetto_idsa.controller;
 
 
 import idsa.progetto_idsa.dto.MedicoDto;
+import idsa.progetto_idsa.entity.Medico;
 import idsa.progetto_idsa.service.MedicoService;
 import lombok.AllArgsConstructor;
 
@@ -32,9 +33,9 @@ public class MedicoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<MedicoDto> getMedicoById(@PathVariable("id")Long id_medico){
-        MedicoDto medicDto = medicoService.getMedicoById(id_medico);
-        return ResponseEntity.ok(medicDto);
+    public ResponseEntity<?> getMedicoById(@PathVariable("id")Long id_medico){
+        MedicoDto medicoDto = medicoService.getMedicoById(id_medico);
+        return ResponseEntity.ok(medicoDto);
     }
 
     @GetMapping

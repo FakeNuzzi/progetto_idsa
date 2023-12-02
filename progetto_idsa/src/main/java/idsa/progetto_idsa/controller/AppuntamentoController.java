@@ -1,7 +1,18 @@
 package idsa.progetto_idsa.controller;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
+import idsa.progetto_idsa.dto.MedicoDto;
+import idsa.progetto_idsa.dto.PazienteDto;
+import idsa.progetto_idsa.entity.Appuntamento;
+import idsa.progetto_idsa.entity.Medico;
+import idsa.progetto_idsa.entity.Paziente;
+import idsa.progetto_idsa.service.MedicoService;
+import idsa.progetto_idsa.service.PazienteService;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,33 +34,53 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/api/appuntamenti")
 public class AppuntamentoController {
+    @Autowired
     private AppuntamentoService appuntamentoService;
+    @Autowired
+    private PazienteService pazienteService;
+    @Autowired
+    private MedicoService medicoService;
+    //ok
     @PostMapping
-    public ResponseEntity<AppuntamentoDto> createAppuntamento(@RequestBody AppuntamentoDto appuntamentoDto){
+    public ResponseEntity<?> createAppuntamentoDto(@RequestBody AppuntamentoDto appuntamentoDto){
         AppuntamentoDto savedAppuntamento = appuntamentoService.createAppuntamento(appuntamentoDto);
         return new ResponseEntity<>(savedAppuntamento,HttpStatus.CREATED);
     }
-
-    @GetMapping("{id}")
-    public ResponseEntity<AppuntamentoDto> getAppuntamentoById(@PathVariable("id")Long id_appuntamento){
+    //ok
+    @GetMapping
+    public ResponseEntity<?> getAllAppuntamenti(){
+        List<AppuntamentoDto> appuntamenti = appuntamentoService.getAllAppuntamenti();
+        return ResponseEntity.ok(appuntamenti);
+    }
+    //ok
+    @GetMapping("{idPaziente}")
+    public ResponseEntity<?> getAppuntamentiByPaziente(@PathVariable("idPaziente")Long id_paziente){
+        PazienteDto pazienteDto = pazienteService.getPazienteById(id_paziente);
+        List<AppuntamentoDto> appuntamentoPazinete = appuntamentoService.findByPaziente(pazienteDto);
+        return ResponseEntity.ok(appuntamentoPazinete);
+    }
+    //ok
+    @GetMapping("{idMedico}")
+    public ResponseEntity<?> getAppuntamentiByMedico(@PathVariable("idMedico")Long id_medico){
+        MedicoDto medicoDto = medicoService.getMedicoById(id_medico);
+        List<AppuntamentoDto> appuntamentoMedico = appuntamentoService.findByMedico(medicoDto);
+        return ResponseEntity.ok(appuntamentoMedico);
+    }
+    //ok
+    @GetMapping("{idAppuntamento}")
+    public ResponseEntity<?> getAppuntamentoById(@PathVariable("idAppuntamento")Long id_appuntamento){
         AppuntamentoDto appuntamentDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
         return ResponseEntity.ok(appuntamentDto);
     }
 
-    @GetMapping
-    public ResponseEntity<List<AppuntamentoDto>> getAllAppuntamenti(){
-        List<AppuntamentoDto> appuntamenti = appuntamentoService.getAllAppuntamenti();
-        return ResponseEntity.ok(appuntamenti);
+    @PutMapping("{idAppuntamento}")
+    public ResponseEntity<?> updateAppuntamento(@PathVariable("idAppuntamento")Long id_appuntamento, @RequestBody AppuntamentoDto updatedAppuntamento){
+        AppuntamentoDto appuntamento = appuntamentoService.updateAppuntamento(id_appuntamento, updatedAppuntamento);
+        return ResponseEntity.ok(appuntamento);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<AppuntamentoDto> updateAppuntamento(@PathVariable("id")Long id_appuntamento, @RequestBody AppuntamentoDto updatedAppuntamento){
-        AppuntamentoDto appuntamentoDto = appuntamentoService.updateAppuntamento(id_appuntamento, updatedAppuntamento);
-        return ResponseEntity.ok(appuntamentoDto);
-    }
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteAppuntamento(@PathVariable("id")Long id_appuntamento){
+    @DeleteMapping("{idAppuntamento}")
+    public ResponseEntity<String> deleteAppuntamento(@PathVariable("idAppuntamento")Long id_appuntamento){
         appuntamentoService.deleteAppuntamento(id_appuntamento);
         return ResponseEntity.ok("Appuntamento cancellato con successo");
     }

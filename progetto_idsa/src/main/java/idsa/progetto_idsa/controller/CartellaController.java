@@ -1,12 +1,16 @@
 package idsa.progetto_idsa.controller;
 
+import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.dto.CartellaDto;
+import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.entityID.CartellaID;
 import idsa.progetto_idsa.service.CartellaService;
+import idsa.progetto_idsa.service.PazienteService;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +28,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/cartelle")
 @AllArgsConstructor
 public class CartellaController {
+    @Autowired
     private CartellaService cartellaService;
+    @Autowired
+    private PazienteService pazienteService;
     @PostMapping
     public ResponseEntity<CartellaDto> createCartella(@RequestBody CartellaDto cartellaDto){
         CartellaDto savedCartella = cartellaService.createCartella(cartellaDto);
@@ -53,5 +60,12 @@ public class CartellaController {
     public ResponseEntity<String> deleteCartella(@PathVariable("id")CartellaID id_cartella){
         cartellaService.deleteCartella(id_cartella);
         return ResponseEntity.ok("Cartella cancellato con successo");
+    }
+
+    @GetMapping("{idPaziente}")
+    public ResponseEntity<?> getCartellaByPaziente(@PathVariable("idPaziente")Long id_paziente){
+        PazienteDto pazienteDto = pazienteService.getPazienteById(id_paziente);
+        List<CartellaDto> cartellaPazinete = cartellaService.findByPaziente(pazienteDto);
+        return ResponseEntity.ok(cartellaPazinete);
     }
 }

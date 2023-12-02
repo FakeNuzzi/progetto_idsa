@@ -3,6 +3,7 @@ package idsa.progetto_idsa.service;
 import java.util.List;
 
 import idsa.progetto_idsa.dto.PazienteDto;
+import idsa.progetto_idsa.entity.Paziente;
 
 public interface PazienteService {
     PazienteDto createPaziente(PazienteDto pazienteDto);

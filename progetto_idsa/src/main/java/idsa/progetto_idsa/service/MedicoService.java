@@ -3,6 +3,7 @@ package idsa.progetto_idsa.service;
 import java.util.List;
 
 import idsa.progetto_idsa.dto.MedicoDto;
+import idsa.progetto_idsa.entity.Medico;
 
 public interface MedicoService {
     MedicoDto createMedico(MedicoDto medicoDto);

@@ -1,9 +1,14 @@
 package idsa.progetto_idsa.service.impl;
 
+import idsa.progetto_idsa.dto.AppuntamentoDto;
+import idsa.progetto_idsa.dto.PazienteDto;
+import idsa.progetto_idsa.dto.RefertoDto;
 import idsa.progetto_idsa.dto.TicketDto;
+import idsa.progetto_idsa.entity.Referto;
 import idsa.progetto_idsa.entity.Ticket;
 import idsa.progetto_idsa.entityID.TicketID;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
+import idsa.progetto_idsa.mapper.RefertoMapper;
 import idsa.progetto_idsa.mapper.TicketMapper;
 import idsa.progetto_idsa.repository.TicketRepository;
 import idsa.progetto_idsa.service.TicketService;
@@ -58,5 +63,19 @@ public class TicketServiceImpl implements TicketService {
         ticketRepository.findById(id_ticket)
             .orElseThrow(() -> new ResourceNotFoundException("Ticket non esiste per l'id dato : " + id_ticket));
         ticketRepository.deleteById(id_ticket);
+    }
+
+    @Override
+    public List<TicketDto> findByAppuntamento(AppuntamentoDto appuntamentoDto) {
+        List<Ticket> tickets = ticketRepository.findByAppuntamento(appuntamentoDto);
+        return tickets.stream().map((ticket) -> TicketMapper.mapToTicketDto(ticket))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TicketDto> findByPaziente(PazienteDto pazienteDto) {
+        List<Ticket> tickets = ticketRepository.findByPaziente(pazienteDto);
+        return tickets.stream().map((ticket) -> TicketMapper.mapToTicketDto(ticket))
+                .collect(Collectors.toList());
     }
 }
