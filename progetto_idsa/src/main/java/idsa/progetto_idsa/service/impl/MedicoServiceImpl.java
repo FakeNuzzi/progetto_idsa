@@ -1,10 +1,8 @@
 package idsa.progetto_idsa.service.impl;
 
 import idsa.progetto_idsa.dto.MedicoDto;
-import idsa.progetto_idsa.entity.Cartella;
 import idsa.progetto_idsa.entity.Medico;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
-import idsa.progetto_idsa.mapper.CartellaMapper;
 import idsa.progetto_idsa.mapper.MedicoMapper;
 import idsa.progetto_idsa.repository.MedicoRepository;
 import idsa.progetto_idsa.service.MedicoService;

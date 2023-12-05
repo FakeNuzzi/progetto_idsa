@@ -31,5 +31,4 @@ public class Appuntamento {
     @ManyToOne
     @JoinColumn(name = "Medico_Id", referencedColumnName = "id_medico")
     private Medico medico;
-
 }

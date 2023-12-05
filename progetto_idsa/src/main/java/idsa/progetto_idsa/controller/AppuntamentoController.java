@@ -1,17 +1,12 @@
 package idsa.progetto_idsa.controller;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import idsa.progetto_idsa.dto.MedicoDto;
 import idsa.progetto_idsa.dto.PazienteDto;
-import idsa.progetto_idsa.entity.Appuntamento;
-import idsa.progetto_idsa.entity.Medico;
-import idsa.progetto_idsa.entity.Paziente;
+
 import idsa.progetto_idsa.service.MedicoService;
 import idsa.progetto_idsa.service.PazienteService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

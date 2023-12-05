@@ -2,13 +2,10 @@ package idsa.progetto_idsa.service.impl;
 
 import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.dto.PazienteDto;
-import idsa.progetto_idsa.dto.RefertoDto;
 import idsa.progetto_idsa.dto.TicketDto;
-import idsa.progetto_idsa.entity.Referto;
 import idsa.progetto_idsa.entity.Ticket;
 import idsa.progetto_idsa.entityID.TicketID;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
-import idsa.progetto_idsa.mapper.RefertoMapper;
 import idsa.progetto_idsa.mapper.TicketMapper;
 import idsa.progetto_idsa.repository.TicketRepository;
 import idsa.progetto_idsa.service.TicketService;

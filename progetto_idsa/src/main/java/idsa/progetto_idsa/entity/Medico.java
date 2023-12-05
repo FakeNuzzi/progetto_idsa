@@ -1,6 +1,7 @@
 package idsa.progetto_idsa.entity;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,4 +32,23 @@ public class Medico {
     private Float stipendio;
     @Column(name = "Specializzazione", nullable = false, unique = true)
     private String specializ;
+
+    @Override
+    public boolean equals(Object obj) {
+    Medico medico = (Medico) obj;
+    if (this.id_medico.equals(medico.getId_medico()) &&
+            this.nome.equals(medico.getNome()) &&
+            this.cognome.equals(medico.getCognome()) &&
+            this.data_n.equals(medico.getData_n()) &&
+            this.cf.equals(medico.getCf()) &&
+            this.stipendio.equals(medico.getStipendio()) &&
+            this.specializ.equals(medico.getSpecializ())) {
+            return true;
+        } else
+            return false;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_medico, nome, cognome, data_n, cf, stipendio, specializ);
+    }
 }

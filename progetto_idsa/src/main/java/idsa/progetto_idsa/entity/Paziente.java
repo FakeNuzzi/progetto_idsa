@@ -2,6 +2,7 @@ package idsa.progetto_idsa.entity;
 
 //import java.util.List;
 import java.sql.Date;
+import java.util.Objects;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,13 +30,21 @@ public class Paziente {
     @Column(name = "Codice Fiscale", nullable = false, unique = true)
     private String cf;
 
-    /*
-    @OneToMany
-    private List<Appuntamento> appuntamenti;
-    */
 
-    /*
-    @OneToMany
-    private List<Ticket> tickets;
-    */
+    @Override
+    public boolean equals(Object obj) {
+    Paziente paziente = (Paziente) obj;
+    if (this.id_paziente.equals(paziente.getId_paziente()) &&
+            this.nome.equals(paziente.getNome()) &&
+            this.cognome.equals(paziente.getCognome()) &&
+            this.data_n.equals(paziente.getData_n()) &&
+            this.cf.equals(paziente.getCf())) {
+            return true;
+        } else
+            return false;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_paziente, nome, cognome, data_n, cf);
+    }
 }

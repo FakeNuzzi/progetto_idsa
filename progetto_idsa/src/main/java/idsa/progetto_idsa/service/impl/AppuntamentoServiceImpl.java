@@ -2,14 +2,9 @@ package idsa.progetto_idsa.service.impl;
 
 import idsa.progetto_idsa.dto.MedicoDto;
 import idsa.progetto_idsa.dto.PazienteDto;
-import idsa.progetto_idsa.entity.Cartella;
-import idsa.progetto_idsa.entity.Medico;
-import idsa.progetto_idsa.entity.Paziente;
-import idsa.progetto_idsa.mapper.CartellaMapper;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,13 +2,11 @@ package idsa.progetto_idsa.service.impl;
 
 import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.dto.CartellaDto;
-import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.dto.RefertoDto;
 import idsa.progetto_idsa.entity.Referto;
 import idsa.progetto_idsa.entityID.RefertoID;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.RefertoMapper;
-import idsa.progetto_idsa.repository.AppuntamentoRepository;
 import idsa.progetto_idsa.repository.RefertoRepository;
 import idsa.progetto_idsa.service.RefertoService;
 import lombok.AllArgsConstructor;
@@ -17,18 +15,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 @AllArgsConstructor
 public class RefertoServicempl implements RefertoService {
     @Autowired
     private RefertoRepository refertoRepository;
-    @Autowired
-    private AppuntamentoRepository appuntamentoRepository;
     
     @Override
     public RefertoDto createReferto(RefertoDto refertoDto) {

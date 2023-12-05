@@ -1,7 +1,6 @@
 package idsa.progetto_idsa.controller;
 
 import idsa.progetto_idsa.dto.PazienteDto;
-import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.service.PazienteService;
 import lombok.AllArgsConstructor;
 

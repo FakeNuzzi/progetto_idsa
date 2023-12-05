@@ -1,6 +1,5 @@
 package idsa.progetto_idsa.controller;
 
-import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.dto.CartellaDto;
 import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.entityID.CartellaID;
