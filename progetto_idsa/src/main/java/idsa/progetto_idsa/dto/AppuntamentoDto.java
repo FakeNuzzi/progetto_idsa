@@ -21,4 +21,30 @@ public class AppuntamentoDto {
     private String tipo_visita;
     private Paziente paziente;
     private Medico medico;
+
+    /*
+    private Long id_paziente;
+    private Long id_medico;
+
+    @Autowired
+    private PazienteRepository pazienteRepository;
+    @Autowired
+    private MedicoRepository medicoRepository;
+
+    public AppuntamentoDto(Long id_appuntamento, Date data, String tipo_visita, Long id_paziente, Long id_medico){
+        this.id_appuntamento = id_appuntamento;
+        this.data = data;
+        this.tipo_visita = tipo_visita;
+        this.id_paziente = id_paziente;
+        this.id_medico = id_medico;
+    }
+
+    public Paziente getPaziente(){
+        return pazienteRepository.findById(id_paziente).get();
+    }
+
+    public Medico getMedico(){
+        return medicoRepository.findById(id_medico).get();
+    }
+    */
 }
