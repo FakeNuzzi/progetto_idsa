@@ -14,7 +14,7 @@ public class AppuntamentoMapper{
             /*
             appuntamento.getId_Paziente(),
             appuntamento.getId_Medico()
-             */
+            */
         );
     } 
 

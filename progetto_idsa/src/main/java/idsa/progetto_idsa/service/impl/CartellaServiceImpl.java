@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-
 @Service
 @AllArgsConstructor
 public class CartellaServiceImpl implements CartellaService {

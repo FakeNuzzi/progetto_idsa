@@ -1,5 +1,7 @@
 package idsa.progetto_idsa.entity;
 
+import java.util.Objects;
+
 import idsa.progetto_idsa.entityID.TicketID;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,4 +33,21 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
     private Paziente paziente;
+
+    @Override
+    public boolean equals(Object obj) {
+        Ticket ticket = (Ticket) obj;
+        if (this.id_ticket.equals(ticket.getId_ticket()) &&
+                this.appuntamento.equals(ticket.getAppuntamento()) &&
+                this.prezzo == ticket.getPrezzo() &&
+                this.stato == ticket.getStato() &&
+                this.paziente.equals(ticket.getPaziente())) {
+            return true;
+        } else
+            return false;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_ticket, appuntamento, prezzo, stato, paziente);
+    }
 }

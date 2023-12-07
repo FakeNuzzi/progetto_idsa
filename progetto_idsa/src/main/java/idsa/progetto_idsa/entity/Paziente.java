@@ -33,6 +33,7 @@ public class Paziente {
 
     @Override
     public boolean equals(Object obj) {
+    if (this == obj) return true;
     Paziente paziente = (Paziente) obj;
     if (this.id_paziente.equals(paziente.getId_paziente()) &&
             this.nome.equals(paziente.getNome()) &&

@@ -29,4 +29,19 @@ public class Cartella {
     @OneToMany
     private List<Referto> referti;
     //private List<Referto> referti = new ArrayList<Referto>();
+
+    @Override
+    public boolean equals(Object obj) {
+        Cartella cartella = (Cartella) obj;
+        if (cartella.getId_cartella().equals(this.id_cartella) &&
+                cartella.getPaziente().equals(this.paziente) &&
+                cartella.getReferti().equals(this.referti)) {
+            return true;
+        } else
+            return false;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_cartella, paziente, referti);
+    }
 }

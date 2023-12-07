@@ -24,7 +24,6 @@ public class Appuntamento {
     @Column(name = "Tipo visita", nullable = false)
     private String tipo_visita;
     
-
     @ManyToOne
     @JoinColumn(name = "Paziente_Id", referencedColumnName = "id_paziente")
     private Paziente paziente;

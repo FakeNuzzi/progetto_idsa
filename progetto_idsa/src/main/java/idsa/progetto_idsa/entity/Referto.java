@@ -1,6 +1,8 @@
 package idsa.progetto_idsa.entity;
 
 
+import java.util.Objects;
+
 import idsa.progetto_idsa.entityID.RefertoID;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,5 +34,22 @@ public class Referto {
     @ManyToOne
     @JoinColumn(name = "Cartella_Id", referencedColumnName = "id_cartella")
     private Cartella cartella;
+
+    @Override
+    public boolean equals(Object obj) {
+        Referto referto = (Referto) obj;
+        if (referto.getId_referto().equals(this.id_referto) &&
+                referto.getAppuntamento().equals(this.appuntamento) &&
+                referto.getTipo_vis().equals(this.tipo_vis) &&
+                referto.getPrescr().equals(this.prescr) &&
+                referto.getCartella().equals(this.cartella)) {
+            return true;
+        } else
+            return false;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_referto, appuntamento, tipo_vis, prescr, cartella);
+    }
     
 }

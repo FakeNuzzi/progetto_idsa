@@ -41,7 +41,7 @@ public class Medico {
             this.cognome.equals(medico.getCognome()) &&
             this.data_n.equals(medico.getData_n()) &&
             this.cf.equals(medico.getCf()) &&
-            this.stipendio.equals(medico.getStipendio()) &&
+            this.stipendio == medico.getStipendio() &&
             this.specializ.equals(medico.getSpecializ())) {
             return true;
         } else
