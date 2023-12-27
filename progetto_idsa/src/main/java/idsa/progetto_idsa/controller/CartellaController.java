@@ -55,16 +55,22 @@ public class CartellaController {
         return ResponseEntity.ok(cartelle);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<CartellaDto> updateCartella(@PathVariable("id")CartellaID id_cartella, @RequestBody CartellaDto updatedCartella){
-        CartellaDto cartellaDto = cartellaService.updateCartella(id_cartella, updatedCartella);
+    @PutMapping("{id_cartella}/{id_paziente}")
+    public ResponseEntity<CartellaDto> updateCartella(@PathVariable("id_cartella")Long id_cartella, @PathVariable("id_paziente")Long id_paziente, @RequestBody CartellaDto updatedCartella){
+        PazienteDto pazienteDto = pazienteService.getPazienteById(id_paziente);
+        Paziente paziente = new Paziente(pazienteDto.getId_paziente(), pazienteDto.getNome(), pazienteDto.getCognome(), pazienteDto.getData_n(), pazienteDto.getCf());
+        CartellaID cartellaID = new CartellaID(id_cartella, paziente);
+        CartellaDto cartellaDto = cartellaService.updateCartella(cartellaID, updatedCartella);
         return ResponseEntity.ok(cartellaDto);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteCartella(@PathVariable("id")CartellaID id_cartella){
-        cartellaService.deleteCartella(id_cartella);
-        return ResponseEntity.ok("Cartella cancellato con successo");
+    @DeleteMapping("{id_cartella}/{id_paziente}")
+    public ResponseEntity<String> deleteCartella(@PathVariable("id_cartella")Long id_cartella, @PathVariable("id_paziente")Long id_paziente){
+        PazienteDto pazienteDto = pazienteService.getPazienteById(id_paziente);
+        Paziente paziente = new Paziente(pazienteDto.getId_paziente(), pazienteDto.getNome(), pazienteDto.getCognome(), pazienteDto.getData_n(), pazienteDto.getCf());
+        CartellaID cartellaID = new CartellaID(id_cartella, paziente);
+        cartellaService.deleteCartella(cartellaID);
+        return ResponseEntity.ok("Cartella cancellata con successo");
     }
 
     /*

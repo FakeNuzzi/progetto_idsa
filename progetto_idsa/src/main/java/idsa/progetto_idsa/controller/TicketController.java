@@ -1,7 +1,10 @@
 package idsa.progetto_idsa.controller;
 
+import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.dto.TicketDto;
+import idsa.progetto_idsa.entity.Appuntamento;
 import idsa.progetto_idsa.entityID.TicketID;
+import idsa.progetto_idsa.service.AppuntamentoService;
 import idsa.progetto_idsa.service.TicketService;
 import lombok.AllArgsConstructor;
 
@@ -27,21 +30,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class TicketController {
     @Autowired
     private TicketService ticketService;
-    /*
     @Autowired
     private AppuntamentoService appuntamentoService;
+
+    /*
     @Autowired
     private PazienteService pazienteService;
     */
+    
     @PostMapping
     public ResponseEntity<TicketDto> createTicket(@RequestBody TicketDto ticketDto){
         TicketDto savedTicket = ticketService.createTicket(ticketDto);
         return new ResponseEntity<>(savedTicket,HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<TicketDto> getTicketById(@PathVariable("id")TicketID id_ticket){
-        TicketDto appuntamentDto = ticketService.getTicketById(id_ticket);
+    @GetMapping("{id_ticket}/{id_appuntamento}")
+    public ResponseEntity<TicketDto> getTicketById(@PathVariable("id_ticket")Long id_ticket, @PathVariable("id_appuntamento")Long id_appuntamento){
+        AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
+        Appuntamento appuntamento = new Appuntamento(appuntamentoDto.getId_appuntamento(), appuntamentoDto.getData(), appuntamentoDto.getTipo_visita(), appuntamentoDto.getPaziente(), appuntamentoDto.getMedico());
+        TicketID ticketID = new TicketID(id_ticket, appuntamento);
+        TicketDto appuntamentDto = ticketService.getTicketById(ticketID);
         return ResponseEntity.ok(appuntamentDto);
     }
 
@@ -51,15 +59,21 @@ public class TicketController {
         return ResponseEntity.ok(tickets);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<TicketDto> updateTicket(@PathVariable("id")TicketID id_ticket, @RequestBody TicketDto updatedTicket){
-        TicketDto ticketDto = ticketService.updateTicket(id_ticket, updatedTicket);
+    @PutMapping("{id_ticket}/{id_appuntamento}")
+    public ResponseEntity<TicketDto> updateTicket(@PathVariable("id_ticket")Long id_ticket, @PathVariable("id_appuntamento")Long id_appuntamento, @RequestBody TicketDto updatedTicket){
+        AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
+        Appuntamento appuntamento = new Appuntamento(appuntamentoDto.getId_appuntamento(), appuntamentoDto.getData(), appuntamentoDto.getTipo_visita(), appuntamentoDto.getPaziente(), appuntamentoDto.getMedico());
+        TicketID ticketID = new TicketID(id_ticket, appuntamento);
+        TicketDto ticketDto = ticketService.updateTicket(ticketID, updatedTicket);
         return ResponseEntity.ok(ticketDto);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteTicket(@PathVariable("id")TicketID id_ticket){
-        ticketService.deleteTicket(id_ticket);
+    @DeleteMapping("{id_ticket}/{id_appuntamento}")
+    public ResponseEntity<String> deleteTicket(@PathVariable("id_ticket")Long id_ticket, @PathVariable("id_appuntamento")Long id_appuntamento){
+        AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
+        Appuntamento appuntamento = new Appuntamento(appuntamentoDto.getId_appuntamento(), appuntamentoDto.getData(), appuntamentoDto.getTipo_visita(), appuntamentoDto.getPaziente(), appuntamentoDto.getMedico());
+        TicketID ticketID = new TicketID(id_ticket, appuntamento);
+        ticketService.deleteTicket(ticketID);
         return ResponseEntity.ok("Ticket cancellato con successo");
     }
 

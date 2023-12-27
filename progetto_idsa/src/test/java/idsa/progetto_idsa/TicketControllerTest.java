@@ -1,6 +1,5 @@
 package idsa.progetto_idsa;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -62,16 +61,15 @@ class TicketControllerTest {
     }
 
     @Test
-    @Disabled
     public void testGetTicketById() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "RSSMRA90A01H501A");
         Medico medico = new Medico(1L, "Mario", "Rossi", Date.valueOf("1990-11-05"), "MRORSS90A01H501A", 1000.0f, "Cardiologia");
         Appuntamento appuntamento = new Appuntamento(1L, Date.valueOf("2021-01-01"), "Chirurgo", paziente, medico);
         TicketDto ticket = new TicketDto(1L, appuntamento, 1000.0f, true, paziente);
         TicketID ticketID = new TicketID(1L, appuntamento);
-        when(ticketService.getTicketById(ticketID)).thenReturn(ticket);
+        when(ticketService.getTicketById(any(TicketID.class))).thenReturn(ticket);
 
-        mockMvc.perform(get("/api/tickets/1")
+        mockMvc.perform(get("/api/tickets/{id_ticket}/{id_appuntamento}", ticketID.getId_ticket(), ticketID.getAppuntamento().getId_appuntamento())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id_ticket", is(ticket.getId_ticket().intValue())))
@@ -99,7 +97,6 @@ class TicketControllerTest {
     }
 
     @Test
-    @Disabled
     public void testUpdateTicket() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "RSSMRA90A01H501A");
         Medico medico = new Medico(1L, "Mario", "Rossi", Date.valueOf("1990-11-05"), "MRORSS90A01H501A", 1000.0f, "Cardiologia");
@@ -107,7 +104,7 @@ class TicketControllerTest {
         TicketDto ticket = new TicketDto(1L, appuntamento, 1000.0f, true, paziente);
         when(ticketService.updateTicket(any(TicketID.class), any(TicketDto.class))).thenReturn(ticket);
 
-        mockMvc.perform(put("/api/tickets/1")
+        mockMvc.perform(put("/api/tickets/{id_ticket}/{id_appuntamento}", ticket.getId_ticket(), ticket.getAppuntamento().getId_appuntamento())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id_ticket\":1,\"nome\":\"Mario\",\"cognome\":\"Rossi\",\"data_n\":\"1990-01-01\",\"cf\":\"RSSMRA90A01H501A\"}"))
                 .andExpect(status().isOk())
@@ -118,7 +115,6 @@ class TicketControllerTest {
     }
 
     @Test
-    @Disabled
     public void testDeleteTicket() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "RSSMRA90A01H501A");
         Medico medico = new Medico(1L, "Mario", "Rossi", Date.valueOf("1990-11-05"), "MRORSS90A01H501A", 1000.0f, "Cardiologia");
@@ -127,7 +123,7 @@ class TicketControllerTest {
         
         doNothing().when(ticketService).deleteTicket(ticketID);
 
-        mockMvc.perform(delete("/api/tickets/1")
+        mockMvc.perform(delete("/api/tickets/{id_ticket}/{id_appuntamento}", ticketID.getId_ticket(), ticketID.getAppuntamento().getId_appuntamento())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

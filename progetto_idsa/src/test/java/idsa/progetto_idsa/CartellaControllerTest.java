@@ -1,6 +1,5 @@
 package idsa.progetto_idsa;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -72,23 +71,15 @@ class CartellaControllerTest {
         MvcResult result = mockMvc.perform(get("/api/cartelle/{id_cartella}/{id_paziente}", cartellaID.getId_cartella(), cartellaID.getPaziente().getId_paziente()))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id_cartella", is(cartella.getId_cartella().intValue())))
+            .andExpect(jsonPath("$.paziente.id_paziente", is(cartella.getPaziente().getId_paziente().intValue())))
+            .andExpect(jsonPath("$.referti", is(cartella.getReferti())))
             .andReturn();
 
         System.out.println(result.getResponse().getContentAsString());
-
-        /*
-        mockMvc.perform(get("/api/cartelle/1", 1)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id_cartella", is(cartellaDto.getId_cartella().intValue())))
-                .andExpect(jsonPath("$.paziente.id_paziente", is(cartellaDto.getPaziente().getId_paziente().intValue())))
-                .andExpect(jsonPath("$.referti", is(cartellaDto.getReferti())));
-        */
     }
 
     
     @Test
-    //@Disabled
     public void testCreateCartella() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "MRORSS90A01H501A");
         List<Referto> referti = new ArrayList<Referto>();
@@ -105,7 +96,6 @@ class CartellaControllerTest {
     }
 
     @Test
-    @Disabled
     public void testUpdateCartella() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "MRORSS90A01H501A");
         List<Referto> referti = new ArrayList<Referto>();
@@ -113,7 +103,7 @@ class CartellaControllerTest {
 
         when(cartellaService.updateCartella(any(CartellaID.class), any(CartellaDto.class))).thenReturn(cartella);
 
-        mockMvc.perform(put("/api/cartelle/1")
+        mockMvc.perform(put("/api/cartelle/{id_cartella}/{id_paziente}", cartella.getId_cartella(), cartella.getPaziente().getId_paziente())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id_cartella\":1,\"nome\":\"Mario\",\"cognome\":\"Rossi\",\"data_n\":\"1990-01-01\",\"cf\":\"RSSMRA90A01H501A\"}"))
                 .andExpect(status().isOk())
@@ -123,12 +113,11 @@ class CartellaControllerTest {
     }
 
     @Test
-    @Disabled
     public void testDeleteCartella() throws Exception {
         CartellaID cartellaID = new CartellaID(1L, new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "MRORSS90A01H501A"));
         doNothing().when(cartellaService).deleteCartella(cartellaID);
 
-        mockMvc.perform(delete("/api/cartelle/{id_cartella}", cartellaID)
+        mockMvc.perform(delete("/api/cartelle/{id_cartella}/{id_paziente}", cartellaID.getId_cartella(), cartellaID.getPaziente().getId_paziente())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

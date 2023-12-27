@@ -1,6 +1,5 @@
 package idsa.progetto_idsa;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -68,7 +67,6 @@ class RefertoControllerTest {
     }
 
     @Test
-    @Disabled
     public void testGetRefertoById() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "MRORSS90A01H501A");
         Medico medico = new Medico(1L, "Mario", "Rossi", Date.valueOf("1990-05-11"), "MRORSS90A01H501A", 1000.0f, "Chirurgo");
@@ -77,9 +75,9 @@ class RefertoControllerTest {
         Cartella cartella = new Cartella(1L, paziente, referticartella);
         RefertoDto referto = new RefertoDto(1L, appuntamento, "Visita", "Prescrizione", cartella);
         RefertoID refertoID = new RefertoID(1L, appuntamento);
-        when(refertoService.getRefertoById(refertoID)).thenReturn(referto);
+        when(refertoService.getRefertoById(any(RefertoID.class))).thenReturn(referto);
 
-        mockMvc.perform(get("/api/referti/1")
+        mockMvc.perform(get("/api/referti/{id_referto}/{id_appuntamento}", refertoID.getId_referto(), refertoID.getAppuntamento().getId_appuntamento())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id_referto", is(referto.getId_referto().intValue())))
@@ -101,7 +99,7 @@ class RefertoControllerTest {
 
         mockMvc.perform(post("/api/referti")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"nome\":\"Mario\",\"cognome\":\"Rossi\",\"dataNascita\":\"1990-01-01\",\"codiceFiscale\":\"RSSMRA90A01H501A\"}"))
+                .content("{\"id_referto\":1,\"nome\":\"Mario\",\"cognome\":\"Rossi\",\"data_n\":\"1990-01-01\",\"cf\":\"RSSMRA90A01H501A\"}"))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id_referto", is(referto.getId_referto().intValue())))
                 .andExpect(jsonPath("$.appuntamento.id_appuntamento", is(referto.getAppuntamento().getId_appuntamento().intValue())))
@@ -111,7 +109,6 @@ class RefertoControllerTest {
     }
 
     @Test
-    @Disabled
     public void testUpdateReferto() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "MRORSS90A01H501A");
         Medico medico = new Medico(1L, "Mario", "Rossi", Date.valueOf("1990-05-11"), "MRORSS90A01H501A", 1000.0f, "Chirurgo");
@@ -121,7 +118,7 @@ class RefertoControllerTest {
         RefertoDto referto = new RefertoDto(1L, appuntamento, "Visita", "Prescrizione", cartella);
         when(refertoService.updateReferto(any(RefertoID.class), any(RefertoDto.class))).thenReturn(referto);
 
-        mockMvc.perform(put("/api/referti/1")
+        mockMvc.perform(put("/api/referti/{id_referto}/{id_appuntamento}", referto.getId_referto(), referto.getAppuntamento().getId_appuntamento())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id_referto\":1,\"nome\":\"Mario\",\"cognome\":\"Rossi\",\"data_n\":\"1990-01-01\",\"cf\":\"RSSMRA90A01H501A\"}"))
                 .andExpect(status().isOk())
@@ -133,7 +130,6 @@ class RefertoControllerTest {
     }
 
     @Test
-    @Disabled
     public void testDeleteReferto() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "MRORSS90A01H501A");
         Medico medico = new Medico(1L, "Mario", "Rossi", Date.valueOf("1990-05-11"), "MRORSS90A01H501A", 1000.0f, "Chirurgo");
@@ -141,7 +137,7 @@ class RefertoControllerTest {
         RefertoID refertoID = new RefertoID(1L, appuntamento);
         doNothing().when(refertoService).deleteReferto(refertoID);
 
-        mockMvc.perform(delete("/api/referti/1")
+        mockMvc.perform(delete("/api/referti/{id_referto}/{id_appuntamento}", refertoID.getId_referto(), refertoID.getAppuntamento().getId_appuntamento())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

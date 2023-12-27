@@ -1,9 +1,10 @@
 package idsa.progetto_idsa.controller;
 
+import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.dto.RefertoDto;
-
+import idsa.progetto_idsa.entity.Appuntamento;
 import idsa.progetto_idsa.entityID.RefertoID;
-
+import idsa.progetto_idsa.service.AppuntamentoService;
 import idsa.progetto_idsa.service.RefertoService;
 import lombok.AllArgsConstructor;
 
@@ -29,9 +30,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class RefertoController {
     @Autowired
     private RefertoService refertoService;
-    /*
+    
     @Autowired
     private AppuntamentoService appuntamentoService;
+    /*
     @Autowired
     private CartellaService cartellaService;
     */
@@ -41,9 +43,12 @@ public class RefertoController {
         return new ResponseEntity<>(savedReferto,HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<RefertoDto> getRefertoById(@PathVariable("id")RefertoID id_referto){
-        RefertoDto refertDto = refertoService.getRefertoById(id_referto);
+    @GetMapping("{id_referto}/{id_appuntamento}")
+    public ResponseEntity<RefertoDto> getRefertoById(@PathVariable("id_referto")Long id_referto, @PathVariable("id_appuntamento")Long id_appuntamento){
+        AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
+        Appuntamento appuntamento = new Appuntamento(appuntamentoDto.getId_appuntamento(), appuntamentoDto.getData(), appuntamentoDto.getTipo_visita(), appuntamentoDto.getPaziente(), appuntamentoDto.getMedico());
+        RefertoID refertoID = new RefertoID(id_referto, appuntamento);
+        RefertoDto refertDto = refertoService.getRefertoById(refertoID);
         return ResponseEntity.ok(refertDto);
     }
 
@@ -53,15 +58,21 @@ public class RefertoController {
         return ResponseEntity.ok(referti);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<RefertoDto> updateReferto(@PathVariable("id")RefertoID id_referto, @RequestBody RefertoDto updatedReferto){
-        RefertoDto refertoDto = refertoService.updateReferto(id_referto, updatedReferto);
+    @PutMapping("{id_referto}/{id_appuntamento}")
+    public ResponseEntity<RefertoDto> updateReferto(@PathVariable("id_referto")Long id_referto, @PathVariable("id_appuntamento")Long id_appuntamento, @RequestBody RefertoDto updatedReferto){
+        AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
+        Appuntamento appuntamento = new Appuntamento(appuntamentoDto.getId_appuntamento(), appuntamentoDto.getData(), appuntamentoDto.getTipo_visita(), appuntamentoDto.getPaziente(), appuntamentoDto.getMedico());
+        RefertoID refertoID = new RefertoID(id_referto, appuntamento);
+        RefertoDto refertoDto = refertoService.updateReferto(refertoID, updatedReferto);
         return ResponseEntity.ok(refertoDto);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteReferto(@PathVariable("id")RefertoID id_referto){
-        refertoService.deleteReferto(id_referto);
+    @DeleteMapping("{id_referto}/{id_appuntamento}")
+    public ResponseEntity<String> deleteReferto(@PathVariable("id_referto")Long id_referto, @PathVariable("id_appuntamento")Long id_appuntamento){
+        AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
+        Appuntamento appuntamento = new Appuntamento(appuntamentoDto.getId_appuntamento(), appuntamentoDto.getData(), appuntamentoDto.getTipo_visita(), appuntamentoDto.getPaziente(), appuntamentoDto.getMedico());
+        RefertoID refertoID = new RefertoID(id_referto, appuntamento);
+        refertoService.deleteReferto(refertoID);
         return ResponseEntity.ok("Referto cancellato con successo");
     }
 

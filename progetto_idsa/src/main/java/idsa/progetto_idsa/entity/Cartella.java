@@ -18,8 +18,7 @@ import lombok.Setter;
 @Table(name = "Cartella")
 public class Cartella {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartella_seq")
-    @SequenceGenerator(name = "cartella_seq", sequenceName = "cartella_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cartella;
 
     @OneToOne
