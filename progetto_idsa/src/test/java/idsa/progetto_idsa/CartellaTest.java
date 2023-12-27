@@ -13,13 +13,6 @@ import idsa.progetto_idsa.entity.Medico;
 import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.entity.Referto;
 
-/*
-    for (int i = 0; i < 5; i++){
-        Referto referto = new Referto((long)i, appuntamento, "Visita", "Prescrizione", null);
-        referti.add(referto);
-    }
-*/
-
 public class CartellaTest {
     
     @Test

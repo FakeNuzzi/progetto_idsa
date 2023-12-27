@@ -1,7 +1,5 @@
 package idsa.progetto_idsa.service.impl;
 
-import idsa.progetto_idsa.dto.AppuntamentoDto;
-import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.dto.TicketDto;
 import idsa.progetto_idsa.entity.Ticket;
 import idsa.progetto_idsa.entityID.TicketID;
@@ -62,6 +60,7 @@ public class TicketServiceImpl implements TicketService {
         ticketRepository.deleteById(id_ticket);
     }
 
+    /*
     @Override
     public List<TicketDto> findByAppuntamento(AppuntamentoDto appuntamentoDto) {
         List<Ticket> tickets = ticketRepository.findByAppuntamento(appuntamentoDto);
@@ -75,4 +74,5 @@ public class TicketServiceImpl implements TicketService {
         return tickets.stream().map((ticket) -> TicketMapper.mapToTicketDto(ticket))
                 .collect(Collectors.toList());
     }
+    */
 }

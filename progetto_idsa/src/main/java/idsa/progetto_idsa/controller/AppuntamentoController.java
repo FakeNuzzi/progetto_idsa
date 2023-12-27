@@ -2,11 +2,6 @@ package idsa.progetto_idsa.controller;
 
 import java.util.List;
 
-import idsa.progetto_idsa.dto.MedicoDto;
-import idsa.progetto_idsa.dto.PazienteDto;
-
-import idsa.progetto_idsa.service.MedicoService;
-import idsa.progetto_idsa.service.PazienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +26,12 @@ import lombok.AllArgsConstructor;
 public class AppuntamentoController {
     @Autowired
     private AppuntamentoService appuntamentoService;
+    /*
     @Autowired
     private PazienteService pazienteService;
     @Autowired
     private MedicoService medicoService;
+    */
     //ok
     @PostMapping
     public ResponseEntity<?> createAppuntamentoDto(@RequestBody AppuntamentoDto appuntamentoDto){
@@ -47,6 +44,7 @@ public class AppuntamentoController {
         List<AppuntamentoDto> appuntamenti = appuntamentoService.getAllAppuntamenti();
         return ResponseEntity.ok(appuntamenti);
     }
+    /*
     //ok
     @GetMapping("{idPaziente}")
     public ResponseEntity<?> getAppuntamentiByPaziente(@PathVariable("idPaziente")Long id_paziente){
@@ -61,6 +59,7 @@ public class AppuntamentoController {
         List<AppuntamentoDto> appuntamentoMedico = appuntamentoService.findByMedico(medicoDto);
         return ResponseEntity.ok(appuntamentoMedico);
     }
+    */
     //ok
     @GetMapping("{idAppuntamento}")
     public ResponseEntity<?> getAppuntamentoById(@PathVariable("idAppuntamento")Long id_appuntamento){

@@ -1,7 +1,5 @@
 package idsa.progetto_idsa.service.impl;
 
-import idsa.progetto_idsa.dto.AppuntamentoDto;
-import idsa.progetto_idsa.dto.CartellaDto;
 import idsa.progetto_idsa.dto.RefertoDto;
 import idsa.progetto_idsa.entity.Referto;
 import idsa.progetto_idsa.entityID.RefertoID;
@@ -19,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class RefertoServicempl implements RefertoService {
+public class RefertoServiceImpl implements RefertoService {
     @Autowired
     private RefertoRepository refertoRepository;
     
@@ -65,6 +63,7 @@ public class RefertoServicempl implements RefertoService {
         refertoRepository.deleteById(id_referto);
     }
 
+    /*
     @Override
     public List<RefertoDto> findByAppuntamento(AppuntamentoDto appuntamentoDto) {
         List<Referto> referti = refertoRepository.findByAppuntamento(appuntamentoDto);
@@ -78,6 +77,6 @@ public class RefertoServicempl implements RefertoService {
         return referti.stream().map((referto) -> RefertoMapper.mapToRefertoDto(referto))
                 .collect(Collectors.toList());
     }
-
+    */
 
 }

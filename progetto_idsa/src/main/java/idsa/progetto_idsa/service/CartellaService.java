@@ -3,7 +3,6 @@ package idsa.progetto_idsa.service;
 import java.util.List;
 
 import idsa.progetto_idsa.dto.CartellaDto;
-import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.entityID.CartellaID;
 
 public interface CartellaService{
@@ -13,5 +12,5 @@ public interface CartellaService{
     CartellaDto updateCartella(CartellaID id_cartella, CartellaDto updatedCartella);
     void deleteCartella(CartellaID id_cartella);
 
-    List<CartellaDto> findByPaziente(PazienteDto pazienteDto);
+    //List<CartellaDto> findByPaziente(PazienteDto pazienteDto);
 }

@@ -1,13 +1,9 @@
 package idsa.progetto_idsa.controller;
 
-import idsa.progetto_idsa.dto.AppuntamentoDto;
-import idsa.progetto_idsa.dto.CartellaDto;
 import idsa.progetto_idsa.dto.RefertoDto;
 
-import idsa.progetto_idsa.entityID.CartellaID;
 import idsa.progetto_idsa.entityID.RefertoID;
-import idsa.progetto_idsa.service.AppuntamentoService;
-import idsa.progetto_idsa.service.CartellaService;
+
 import idsa.progetto_idsa.service.RefertoService;
 import lombok.AllArgsConstructor;
 
@@ -33,10 +29,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class RefertoController {
     @Autowired
     private RefertoService refertoService;
+    /*
     @Autowired
     private AppuntamentoService appuntamentoService;
     @Autowired
     private CartellaService cartellaService;
+    */
     @PostMapping
     public ResponseEntity<RefertoDto> createReferto(@RequestBody RefertoDto refertoDto){
         RefertoDto savedReferto = refertoService.createReferto(refertoDto);
@@ -67,6 +65,7 @@ public class RefertoController {
         return ResponseEntity.ok("Referto cancellato con successo");
     }
 
+    /*
     @GetMapping("{idAppuntamento}")
     public ResponseEntity<?> getRefertoByAppuntamento(@PathVariable("idAppuntamento")Long id_appuntamento){
         AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
@@ -80,4 +79,5 @@ public class RefertoController {
         List<RefertoDto> refertoAppuntamento = refertoService.findByCartella(cartellaDto);
         return ResponseEntity.ok(refertoAppuntamento);
     }
+    */
 }

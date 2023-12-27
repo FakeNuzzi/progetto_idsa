@@ -1,7 +1,6 @@
 package idsa.progetto_idsa.service.impl;
 
 import idsa.progetto_idsa.dto.CartellaDto;
-import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.entity.Cartella;
 import idsa.progetto_idsa.entityID.CartellaID;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
@@ -20,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class CartellaServiceImpl implements CartellaService {
     private CartellaRepository cartellaRepository;
     
+
     @Override
     public CartellaDto createCartella(CartellaDto cartellaDto) {
         Cartella cartella = CartellaMapper.mapToCartella(cartellaDto);
@@ -33,6 +33,7 @@ public class CartellaServiceImpl implements CartellaService {
             .orElseThrow(() -> new ResourceNotFoundException("Cartella non esiste per un dato id : " + id_cartella));
             return CartellaMapper.mapToCartellaDto(cartella);
     }
+    
 
     @Override
     public List<CartellaDto> getAllCartelle(){
@@ -59,10 +60,11 @@ public class CartellaServiceImpl implements CartellaService {
             .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_cartella));
         cartellaRepository.deleteById(id_cartella);
     }
-
+    /*
     public List<CartellaDto> findByPaziente(PazienteDto pazienteDto){
         List<Cartella> cartelle = cartellaRepository.findByPaziente(pazienteDto);
         return cartelle.stream().map((cartella) -> CartellaMapper.mapToCartellaDto(cartella))
                 .collect(Collectors.toList());
     }
+    */
 }

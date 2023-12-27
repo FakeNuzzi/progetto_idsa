@@ -1,11 +1,7 @@
 package idsa.progetto_idsa.controller;
 
-import idsa.progetto_idsa.dto.AppuntamentoDto;
-import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.dto.TicketDto;
 import idsa.progetto_idsa.entityID.TicketID;
-import idsa.progetto_idsa.service.AppuntamentoService;
-import idsa.progetto_idsa.service.PazienteService;
 import idsa.progetto_idsa.service.TicketService;
 import lombok.AllArgsConstructor;
 
@@ -31,10 +27,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TicketController {
     @Autowired
     private TicketService ticketService;
+    /*
     @Autowired
     private AppuntamentoService appuntamentoService;
     @Autowired
     private PazienteService pazienteService;
+    */
     @PostMapping
     public ResponseEntity<TicketDto> createTicket(@RequestBody TicketDto ticketDto){
         TicketDto savedTicket = ticketService.createTicket(ticketDto);
@@ -65,6 +63,7 @@ public class TicketController {
         return ResponseEntity.ok("Ticket cancellato con successo");
     }
 
+    /*
     @GetMapping("{idAppuntamento}")
     public ResponseEntity<?> getTicketByAppuntamento(@PathVariable("idAppuntamento")Long id_appuntamento){
         AppuntamentoDto appuntamentoDto = appuntamentoService.getAppuntamentoById(id_appuntamento);
@@ -78,4 +77,5 @@ public class TicketController {
         List<TicketDto> ticketPaziente = ticketService.findByPaziente(pazienteDto);
         return ResponseEntity.ok(ticketPaziente);
     }
+    */
 }

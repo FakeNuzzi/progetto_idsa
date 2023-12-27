@@ -1,7 +1,5 @@
 package idsa.progetto_idsa.service.impl;
 
-import idsa.progetto_idsa.dto.MedicoDto;
-import idsa.progetto_idsa.dto.PazienteDto;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -63,7 +61,7 @@ public class AppuntamentoServiceImpl implements AppuntamentoService{
             .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_appuntamento));
         appuntamentoRepository.deleteById(id_appuntamento);
     }
-
+    /*
     @Override
     public List<AppuntamentoDto> findByPaziente(PazienteDto pazienteDto){
         List<Appuntamento> appuntamenti = appuntamentoRepository.findByPaziente(pazienteDto);
@@ -77,4 +75,5 @@ public class AppuntamentoServiceImpl implements AppuntamentoService{
         return appuntamenti.stream().map((appuntamento) -> AppuntamentoMapper.mapToAppuntamentoDto(appuntamento))
                 .collect(Collectors.toList());
     }
+    */
 }
