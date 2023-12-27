@@ -61,16 +61,15 @@ class CartellaControllerTest {
     }
     
     @Test
-    @Disabled
     public void testGetCartellaById() throws Exception {
         Paziente paziente = new Paziente(1L, "Mario", "Rossi", Date.valueOf("1990-01-01"), "MRORSS90A01H501A");
         List<Referto> referti = new ArrayList<Referto>();
         CartellaDto cartella = new CartellaDto(1L, paziente, referti);
         CartellaID cartellaID = new CartellaID(1L, paziente);
         
-        when(cartellaService.getCartellaById(cartellaID)).thenReturn(cartella);
+        when(cartellaService.getCartellaById(any(CartellaID.class))).thenReturn(cartella);
 
-        MvcResult result = mockMvc.perform(get("/api/cartelle/{id}", cartellaID))
+        MvcResult result = mockMvc.perform(get("/api/cartelle/{id_cartella}/{id_paziente}", cartellaID.getId_cartella(), cartellaID.getPaziente().getId_paziente()))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id_cartella", is(cartella.getId_cartella().intValue())))
             .andReturn();

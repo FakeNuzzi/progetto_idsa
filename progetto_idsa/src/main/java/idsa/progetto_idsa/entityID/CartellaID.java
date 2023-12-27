@@ -8,12 +8,14 @@ import lombok.Setter;
 import java.io.Serializable;
 
 import idsa.progetto_idsa.entity.Paziente;
+import jakarta.persistence.Embeddable;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
+@Embeddable
 public class CartellaID implements Serializable {
     private Long id_cartella;
     private Paziente paziente;

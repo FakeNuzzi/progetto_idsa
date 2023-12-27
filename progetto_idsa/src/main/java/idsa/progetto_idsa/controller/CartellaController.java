@@ -1,8 +1,11 @@
 package idsa.progetto_idsa.controller;
 
 import idsa.progetto_idsa.dto.CartellaDto;
+import idsa.progetto_idsa.dto.PazienteDto;
+import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.entityID.CartellaID;
 import idsa.progetto_idsa.service.CartellaService;
+import idsa.progetto_idsa.service.PazienteService;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -28,14 +31,20 @@ public class CartellaController {
     @Autowired
     private CartellaService cartellaService;
 
+    @Autowired
+    private PazienteService pazienteService;
+
     @PostMapping
     public ResponseEntity<CartellaDto> createCartella(@RequestBody CartellaDto cartellaDto){
         CartellaDto savedCartella = cartellaService.createCartella(cartellaDto);
         return new ResponseEntity<>(savedCartella,HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<CartellaDto> getCartellaById(@PathVariable("id")CartellaID cartellaID){
+    @GetMapping("{id_cartella}/{id_paziente}")
+    public ResponseEntity<CartellaDto> getCartellaById(@PathVariable("id_cartella")Long id_cartella, @PathVariable("id_paziente")Long id_paziente){
+        PazienteDto pazienteDto = pazienteService.getPazienteById(id_paziente);
+        Paziente paziente = new Paziente(pazienteDto.getId_paziente(), pazienteDto.getNome(), pazienteDto.getCognome(), pazienteDto.getData_n(), pazienteDto.getCf());
+        CartellaID cartellaID = new CartellaID(id_cartella, paziente);
         CartellaDto cartellaDto = cartellaService.getCartellaById(cartellaID);
         return ResponseEntity.ok(cartellaDto);
     }
