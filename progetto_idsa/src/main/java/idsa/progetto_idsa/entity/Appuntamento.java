@@ -1,7 +1,5 @@
 package idsa.progetto_idsa.entity;
 
-import java.sql.Date;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,24 +38,4 @@ public class Appuntamento {
     @OneToOne
     @JoinColumn(name = "data_slot")
     private Slot slot;
-
-    public Long getId_paziente() {
-        return paziente.getId_utente();
-    }
-
-    public Long getId_medico() {
-        return medico.getId_utente();
-    }
-    
-    public Long getId_risultato() {
-        return risultato.getId_ris();
-    }
-
-    public String getTipo_visita() {
-        return visita.getTipo_vis();
-    }
-
-    public Date getDataOraSlot() {
-        return slot.getDataOraSlot();
-    }
 }

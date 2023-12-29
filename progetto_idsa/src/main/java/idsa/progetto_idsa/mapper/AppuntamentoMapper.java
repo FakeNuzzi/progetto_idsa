@@ -8,11 +8,12 @@ public class AppuntamentoMapper {
         return new AppuntamentoDto(
             appuntamento.getId_app(),
             appuntamento.getPagato(),
-            appuntamento.getId_paziente(),
-            appuntamento.getId_medico(),
-            appuntamento.getId_risultato(),
-            appuntamento.getTipo_visita(),
-            appuntamento.getDataOraSlot());
+            appuntamento.getPaziente().getId_utente(),
+            appuntamento.getMedico().getId_utente(),
+            appuntamento.getRisultato().getId_ris(),
+            appuntamento.getVisita().getTipo_vis(),
+            appuntamento.getSlot().getDataOraSlot()
+        );
     }
 
     public static Appuntamento mapToAppuntamento(AppuntamentoDto appuntamentoDto) {
