@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.entity.Appuntamento;
@@ -17,6 +18,7 @@ import idsa.progetto_idsa.repository.SlotRepository;
 import idsa.progetto_idsa.repository.VisitaRepository;
 import idsa.progetto_idsa.service.AppuntamentoService;
 
+@Service
 public class AppuntamentoServiceImpl implements AppuntamentoService {
     @Autowired
     private AppuntamentoRepository appuntamentoRepository;
