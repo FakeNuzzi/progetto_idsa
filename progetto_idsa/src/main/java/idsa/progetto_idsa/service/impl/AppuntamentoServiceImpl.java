@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.entity.Appuntamento;
+import idsa.progetto_idsa.entity.Medico;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.AppuntamentoMapper;
 import idsa.progetto_idsa.repository.AppuntamentoRepository;
@@ -80,5 +81,14 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
         appuntamentoRepository.findById(id_appuntamento)
             .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_appuntamento));
         appuntamentoRepository.deleteById(id_appuntamento);
+    }
+
+    @Override
+    public List<AppuntamentoDto> getAppuntamentiByMedico(Long id_medico){
+        Medico medico = medicoRepository.findById(id_medico)
+            .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + id_medico));
+        List<Appuntamento> appuntamenti = appuntamentoRepository.findByMedico(medico);
+        return appuntamenti.stream().map((appuntamento) -> AppuntamentoMapper.mapToAppuntamentoDto(appuntamento))
+            .collect(Collectors.toList());
     }
 }

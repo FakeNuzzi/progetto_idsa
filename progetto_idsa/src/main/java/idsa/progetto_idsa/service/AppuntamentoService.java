@@ -10,4 +10,5 @@ public interface AppuntamentoService {
     List<AppuntamentoDto> getAllAppuntamenti();
     AppuntamentoDto updateAppuntamento(Long id_app, AppuntamentoDto updatedAppuntamento);
     void deleteAppuntamento(Long id_app);
+    List<AppuntamentoDto> getAppuntamentiByMedico(Long id_medico);
 }
