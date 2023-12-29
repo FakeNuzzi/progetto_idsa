@@ -6,8 +6,8 @@ import idsa.progetto_idsa.dto.MedicoDto;
 
 public interface MedicoService {
     MedicoDto createMedico(MedicoDto medicoDto);
-    MedicoDto getMedicoById(Long id_medico);
+    MedicoDto getMedicoById(Long id_utente);
     List<MedicoDto> getAllMedici();
-    MedicoDto updateMedico(Long id_medico, MedicoDto updatedMedico);
-    void deleteMedico(Long id_medico);
+    MedicoDto updateMedico(Long id_utente, MedicoDto updatedMedico);
+    void deleteMedico(Long id_utente);
 }
