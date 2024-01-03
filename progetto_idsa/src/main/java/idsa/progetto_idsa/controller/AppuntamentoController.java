@@ -36,8 +36,8 @@ public class AppuntamentoController {
         return ResponseEntity.ok(appuntamentoDto);
     }
 
-    @GetMapping("{id_medico}")
-    public ResponseEntity<?> getAppuntamentiByMedico(@PathVariable("id")Long id_medico){
+    @GetMapping("medico/{id_medico}")
+    public ResponseEntity<?> getAppuntamentiByMedico(@PathVariable("id_medico")Long id_medico){
         List<AppuntamentoDto> appuntamenti = appuntamentoService.getAppuntamentiByMedico(id_medico);
         return ResponseEntity.ok(appuntamenti);
     }

@@ -32,8 +32,8 @@ public class VisitaController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> getVisitaById(@PathVariable("id")String tipo_vis){
-        VisitaDto visitaDto = visitaService.getVisitaById(tipo_vis);
+    public ResponseEntity<?> getVisitaById(@PathVariable("id")Long id_visita){
+        VisitaDto visitaDto = visitaService.getVisitaById(id_visita);
         return ResponseEntity.ok(visitaDto);
     }
 
@@ -44,14 +44,14 @@ public class VisitaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<VisitaDto> updateVisita(@PathVariable("id")String tipo_vis, @RequestBody VisitaDto updatedVisita){
-        VisitaDto visitaDto = visitaService.updateVisita(tipo_vis, updatedVisita);
+    public ResponseEntity<VisitaDto> updateVisita(@PathVariable("id")Long id_visita, @RequestBody VisitaDto updatedVisita){
+        VisitaDto visitaDto = visitaService.updateVisita(id_visita, updatedVisita);
         return ResponseEntity.ok(visitaDto);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteVisita(@PathVariable("id")String tipo_vis){
-        visitaService.deleteVisita(tipo_vis);
+    public ResponseEntity<String> deleteVisita(@PathVariable("id")Long id_visita){
+        visitaService.deleteVisita(id_visita);
         return ResponseEntity.ok("Visita cancellato con successo");
     }
 }

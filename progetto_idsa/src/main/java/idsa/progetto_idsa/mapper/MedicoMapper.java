@@ -2,6 +2,8 @@ package idsa.progetto_idsa.mapper;
 
 import idsa.progetto_idsa.dto.MedicoDto;
 import idsa.progetto_idsa.entity.Medico;
+import idsa.progetto_idsa.repository.AppuntamentoRepository;
+import idsa.progetto_idsa.repository.VisitaRepository;
 
 public class MedicoMapper {
     public static MedicoDto mapToMedicoDto(Medico medico) {
@@ -14,13 +16,11 @@ public class MedicoMapper {
             medico.getEmail(),
             medico.getPassword(),
             medico.getStipendio(),
-            medico.getSpecializ(),
-            medico.getIdAppuntamenti(),
-            medico.getTipiVisite()
+            medico.getSpecializ()
         );
     }
 
-    public static Medico mapToMedico(MedicoDto medicoDto) {
+    public static Medico mapToMedico(MedicoDto medicoDto, AppuntamentoRepository appuntamentoRepository, VisitaRepository visitaRepository) {
         return new Medico(
             medicoDto.getId_utente(),
             medicoDto.getNome(),
@@ -30,9 +30,7 @@ public class MedicoMapper {
             medicoDto.getEmail(),
             medicoDto.getPassword(),
             medicoDto.getStipendio(),
-            medicoDto.getSpecializ(),
-            medicoDto.getAppuntamenti(),
-            medicoDto.getVisite()
+            medicoDto.getSpecializ()
         );
     }
 }

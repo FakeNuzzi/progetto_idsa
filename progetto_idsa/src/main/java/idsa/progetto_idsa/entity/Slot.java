@@ -17,10 +17,10 @@ import lombok.Setter;
 @Table(name = "Slot")
 public class Slot {
     @Id
-    private Date dataOraSlot;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_slot;
+    @Column(name = "DataOraSlot", nullable = false, unique = true)
+    private Date DataOraSlot;
     @Column(name = "Occupata", nullable = false)
     private Boolean occupato;
-
-    @OneToOne(mappedBy = "slot")
-    private Appuntamento appuntamento;
 }

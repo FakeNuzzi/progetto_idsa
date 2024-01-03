@@ -2,6 +2,7 @@ package idsa.progetto_idsa.mapper;
 
 import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.entity.Paziente;
+import idsa.progetto_idsa.repository.AppuntamentoRepository;
 
 public class PazienteMapper {
     public static PazienteDto mapToPazienteDto(Paziente paziente) {
@@ -12,12 +13,11 @@ public class PazienteMapper {
             paziente.getData_n(),
             paziente.getCf(),
             paziente.getEmail(),
-            paziente.getPassword(),
-            paziente.getIdAppuntamenti()
+            paziente.getPassword()
         );
     }
 
-    public static Paziente mapToPaziente(PazienteDto pazienteDto) {
+    public static Paziente mapToPaziente(PazienteDto pazienteDto, AppuntamentoRepository appuntamentoRepository) {
         return new Paziente(
             pazienteDto.getId_utente(),
             pazienteDto.getNome(),
@@ -25,8 +25,7 @@ public class PazienteMapper {
             pazienteDto.getData_n(),
             pazienteDto.getCf(),
             pazienteDto.getEmail(),
-            pazienteDto.getPassword(),
-            pazienteDto.getAppuntamenti()
+            pazienteDto.getPassword()
         );
     }
 }

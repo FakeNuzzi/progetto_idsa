@@ -2,10 +2,11 @@ package idsa.progetto_idsa.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,8 +21,11 @@ import lombok.Setter;
 @Table(name = "Visita")
 public class Visita {
     @Id
-    private String tipo_vis;
-    @Column(name = "Descrizione", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_vis;
+    @Column(name = "Tipo_visita", nullable = false, unique = true)
+    private String tipoVis;
+    @Column(name = "Descrizione", nullable = true)
     private String descr;
     @Column(name = "Prezzo", nullable = false)
     private Float prezzo;
@@ -29,8 +33,4 @@ public class Visita {
     @ManyToOne
     @JoinColumn(name = "id_medico")
     private Medico medico;
-
-    @OneToOne
-    @JoinColumn(name = "id_appuntamento")
-    private Appuntamento appuntamento;
 }

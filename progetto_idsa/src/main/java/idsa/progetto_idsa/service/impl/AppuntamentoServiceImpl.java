@@ -18,7 +18,9 @@ import idsa.progetto_idsa.repository.RisultatoRepository;
 import idsa.progetto_idsa.repository.SlotRepository;
 import idsa.progetto_idsa.repository.VisitaRepository;
 import idsa.progetto_idsa.service.AppuntamentoService;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Service
 public class AppuntamentoServiceImpl implements AppuntamentoService {
     @Autowired
@@ -36,7 +38,11 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 
     @Override
     public AppuntamentoDto createAppuntamento(AppuntamentoDto appuntamentoDto) {
-        Appuntamento appuntamento = AppuntamentoMapper.mapToAppuntamento(appuntamentoDto);
+        Appuntamento appuntamento = AppuntamentoMapper.mapToAppuntamento(appuntamentoDto, pazienteRepository, medicoRepository, risultatoRepository, visitaRepository, slotRepository);
+        appuntamento.setPaziente(pazienteRepository.findById(appuntamentoDto.getId_paziente()).get());        
+        appuntamento.setMedico(medicoRepository.findById(appuntamentoDto.getId_medico()).get());
+        appuntamento.setVisita(visitaRepository.findById(appuntamentoDto.getId_visita()).get());
+        appuntamento.setSlot(slotRepository.findById(appuntamentoDto.getId_slot()).get());
         Appuntamento savedAppuntamento = appuntamentoRepository.save(appuntamento);
         return AppuntamentoMapper.mapToAppuntamentoDto(savedAppuntamento);
     }
@@ -57,19 +63,12 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 
     @Override
     public AppuntamentoDto updateAppuntamento(Long id_appuntamento, AppuntamentoDto updatedAppuntamento){
-        Appuntamento appuntamento = appuntamentoRepository.findById(id_appuntamento)
-            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_appuntamento));
+        Appuntamento appuntamento = appuntamentoRepository.findById(id_appuntamento).get();
         appuntamento.setPagato(updatedAppuntamento.getPagato());
-        appuntamento.setPaziente(pazienteRepository.findById(updatedAppuntamento.getId_paziente())
-            .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per l'id dato : " + updatedAppuntamento.getId_paziente())));
-        appuntamento.setMedico(medicoRepository.findById(updatedAppuntamento.getId_medico())
-            .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + updatedAppuntamento.getId_medico())));
-        appuntamento.setRisultato(risultatoRepository.findById(updatedAppuntamento.getId_risultato())
-            .orElseThrow(() -> new ResourceNotFoundException("Risultato non esiste per l'id dato : " + updatedAppuntamento.getId_risultato())));
-        appuntamento.setVisita(visitaRepository.findById(updatedAppuntamento.getTipo_visita())
-            .orElseThrow(() -> new ResourceNotFoundException("Visita non esiste per l'id dato : " + updatedAppuntamento.getTipo_visita())));
-        appuntamento.setSlot(slotRepository.findById(updatedAppuntamento.getDataOraSlot())
-            .orElseThrow(() -> new ResourceNotFoundException("Slot non esiste per l'id dato : " + updatedAppuntamento.getDataOraSlot())));
+        appuntamento.setPaziente(pazienteRepository.findById(updatedAppuntamento.getId_paziente()).get());
+        appuntamento.setMedico(medicoRepository.findById(updatedAppuntamento.getId_medico()).get());
+        appuntamento.setVisita(visitaRepository.findById(updatedAppuntamento.getId_visita()).get());
+        appuntamento.setSlot(slotRepository.findById(updatedAppuntamento.getId_slot()).get());
 
         Appuntamento updatedAppuntamentoObj = appuntamentoRepository.save(appuntamento);
 
@@ -85,8 +84,7 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
 
     @Override
     public List<AppuntamentoDto> getAppuntamentiByMedico(Long id_medico){
-        Medico medico = medicoRepository.findById(id_medico)
-            .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + id_medico));
+        Medico medico = medicoRepository.findById(id_medico).get();
         List<Appuntamento> appuntamenti = appuntamentoRepository.findByMedico(medico);
         return appuntamenti.stream().map((appuntamento) -> AppuntamentoMapper.mapToAppuntamentoDto(appuntamento))
             .collect(Collectors.toList());

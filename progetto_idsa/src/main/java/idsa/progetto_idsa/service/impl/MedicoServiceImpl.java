@@ -10,17 +10,25 @@ import idsa.progetto_idsa.dto.MedicoDto;
 import idsa.progetto_idsa.entity.Medico;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.MedicoMapper;
+import idsa.progetto_idsa.repository.AppuntamentoRepository;
 import idsa.progetto_idsa.repository.MedicoRepository;
+import idsa.progetto_idsa.repository.VisitaRepository;
 import idsa.progetto_idsa.service.MedicoService;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Service
 public class MedicoServiceImpl implements MedicoService {
     @Autowired
     private MedicoRepository medicoRepository;
+    @Autowired
+    private AppuntamentoRepository appuntamentoRepository;
+    @Autowired
+    private VisitaRepository visitaRepository;
 
     @Override
     public MedicoDto createMedico(MedicoDto medicoDto) {
-        Medico medico = MedicoMapper.mapToMedico(medicoDto);
+        Medico medico = MedicoMapper.mapToMedico(medicoDto, appuntamentoRepository, visitaRepository);
         Medico savedMedico = medicoRepository.save(medico);
         return MedicoMapper.mapToMedicoDto(savedMedico);
     }
@@ -51,8 +59,6 @@ public class MedicoServiceImpl implements MedicoService {
         medico.setPassword(updatedMedico.getPassword());
         medico.setStipendio(updatedMedico.getStipendio());
         medico.setSpecializ(updatedMedico.getSpecializ());
-        medico.setAppuntamenti(updatedMedico.getAppuntamenti());
-        medico.setVisite(updatedMedico.getVisite());
 
         Medico updatedMedicoObj = medicoRepository.save(medico);
 

@@ -28,11 +28,7 @@ public class Appuntamento {
     private Medico medico;
 
     @OneToOne
-    @JoinColumn(name = "id_risultato")
-    private Risultato risultato;
-
-    @OneToOne
-    @JoinColumn(name = "tipo_visita")
+    @JoinColumn(name = "tipo_visita", nullable = true)
     private Visita visita;
 
     @OneToOne

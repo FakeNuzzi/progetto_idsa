@@ -10,17 +10,23 @@ import idsa.progetto_idsa.dto.RisultatoDto;
 import idsa.progetto_idsa.entity.Risultato;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.RisultatoMapper;
+import idsa.progetto_idsa.repository.AppuntamentoRepository;
 import idsa.progetto_idsa.repository.RisultatoRepository;
 import idsa.progetto_idsa.service.RisultatoService;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Service
 public class RisultatoServiceImpl implements RisultatoService {
     @Autowired
     private RisultatoRepository risultatoRepository;
+    @Autowired
+    private AppuntamentoRepository appuntamentoRepository;
 
     @Override
     public RisultatoDto createRisultato(RisultatoDto risultatoDto) {
-        Risultato risultato = RisultatoMapper.mapToRisultato(risultatoDto);
+        Risultato risultato = RisultatoMapper.mapToRisultato(risultatoDto, appuntamentoRepository);
+        risultato.setAppuntamento(appuntamentoRepository.findById(risultatoDto.getId_appuntamento()).get());
         Risultato savedRisultato = risultatoRepository.save(risultato);
         return RisultatoMapper.mapToRisultatoDto(savedRisultato);
     }
@@ -45,8 +51,8 @@ public class RisultatoServiceImpl implements RisultatoService {
             .orElseThrow(() -> new ResourceNotFoundException("Risultato non esiste per l'id dato : " + id_risultato));
         risultato.setReferto(updatedRisultato.getReferto());
         risultato.setPrescr(updatedRisultato.getPrescr());
-        risultato.setAppuntamento(updatedRisultato.getAppuntamento());
-
+        risultato.setAppuntamento(appuntamentoRepository.findById(updatedRisultato.getId_appuntamento()).get());
+        
         Risultato updatedRisultatoObj = risultatoRepository.save(risultato);
 
         return RisultatoMapper.mapToRisultatoDto(updatedRisultatoObj);

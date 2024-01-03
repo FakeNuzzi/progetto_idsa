@@ -21,6 +21,7 @@ public class Risultato {
     @Column(name = "Prescr", nullable = false)
     private String prescr;
 
-    @OneToOne(mappedBy = "risultato")
+    @OneToOne
+    @JoinColumn(name = "id_appuntamento")
     private Appuntamento appuntamento;
 }

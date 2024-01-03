@@ -10,17 +10,22 @@ import idsa.progetto_idsa.dto.PazienteDto;
 import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.PazienteMapper;
+import idsa.progetto_idsa.repository.AppuntamentoRepository;
 import idsa.progetto_idsa.repository.PazienteRepository;
 import idsa.progetto_idsa.service.PazienteService;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Service
 public class PazienteServiceImpl implements PazienteService {
     @Autowired
     private PazienteRepository pazienteRepository;
+    @Autowired
+    private AppuntamentoRepository appuntamentoRepository;
 
     @Override
     public PazienteDto createPaziente(PazienteDto pazienteDto) {
-        Paziente paziente = PazienteMapper.mapToPaziente(pazienteDto);
+        Paziente paziente = PazienteMapper.mapToPaziente(pazienteDto, appuntamentoRepository);
         Paziente savedPaziente = pazienteRepository.save(paziente);
         return PazienteMapper.mapToPazienteDto(savedPaziente);
     }
@@ -49,7 +54,6 @@ public class PazienteServiceImpl implements PazienteService {
         paziente.setCf(updatedPaziente.getCf());
         paziente.setEmail(updatedPaziente.getEmail());
         paziente.setPassword(updatedPaziente.getPassword());
-        paziente.setAppuntamenti(updatedPaziente.getAppuntamenti());
 
         Paziente updatedPazienteObj = pazienteRepository.save(paziente);
 

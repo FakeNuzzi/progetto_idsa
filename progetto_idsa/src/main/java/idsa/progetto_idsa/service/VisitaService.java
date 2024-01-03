@@ -6,8 +6,8 @@ import idsa.progetto_idsa.dto.VisitaDto;
 
 public interface VisitaService {
     VisitaDto createVisita(VisitaDto pazienteDto);
-    VisitaDto getVisitaById(String tipo_vis);
+    VisitaDto getVisitaById(Long id_visita);
     List<VisitaDto> getAllVisite();
-    VisitaDto updateVisita(String tipo_vis, VisitaDto updatedVisita);
-    void deleteVisita(String tipo_vis);
+    VisitaDto updateVisita(Long id_visita, VisitaDto updatedVisita);
+    void deleteVisita(Long id_visita);
 }

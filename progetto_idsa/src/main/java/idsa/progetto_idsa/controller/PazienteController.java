@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class PazienteController {
     private PazienteService pazienteService;
+    
     @PostMapping
     public ResponseEntity<PazienteDto> createPaziente(@RequestBody PazienteDto pazienteDto){
         PazienteDto savedPaziente = pazienteService.createPaziente(pazienteDto);

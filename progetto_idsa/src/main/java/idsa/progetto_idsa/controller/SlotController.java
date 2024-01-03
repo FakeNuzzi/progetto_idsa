@@ -5,7 +5,6 @@ import idsa.progetto_idsa.dto.SlotDto;
 import idsa.progetto_idsa.service.SlotService;
 import lombok.AllArgsConstructor;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -33,8 +32,8 @@ public class SlotController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> getSlotById(@PathVariable("id")Date dataOraSlot){
-        SlotDto slotDto = slotService.getSlotById(dataOraSlot);
+    public ResponseEntity<?> getSlotById(@PathVariable("id")Long id_slot){
+        SlotDto slotDto = slotService.getSlotById(id_slot);
         return ResponseEntity.ok(slotDto);
     }
 
@@ -45,14 +44,14 @@ public class SlotController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<SlotDto> updateSlot(@PathVariable("id")Date dataOraSlot, @RequestBody SlotDto updatedSlot){
-        SlotDto slotDto = slotService.updateSlot(dataOraSlot, updatedSlot);
+    public ResponseEntity<SlotDto> updateSlot(@PathVariable("id")Long id_slot, @RequestBody SlotDto updatedSlot){
+        SlotDto slotDto = slotService.updateSlot(id_slot, updatedSlot);
         return ResponseEntity.ok(slotDto);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteSlot(@PathVariable("id")Date dataOraSlot){
-        slotService.deleteSlot(dataOraSlot);
+    public ResponseEntity<String> deleteSlot(@PathVariable("id")Long id_slot){
+        slotService.deleteSlot(id_slot);
         return ResponseEntity.ok("Slot cancellato con successo");
     }
 }
