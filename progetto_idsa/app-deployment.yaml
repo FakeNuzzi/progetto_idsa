@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: progetto-idsa-backend
+spec:
+  selector:
+    matchLabels:
+      app: springboot-k8s
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: springboot-k8s
+        spec:
+          containers:
+            - name: progetto_idsa-backend
+              image: progetto_idsa-backend:1.0
+              ports:
+               - containerPort: 30000
+              env:
+                - name: DB_HOST
+                  value: mysql
+                - name: DB_NAME
+                  value: idsa
+                - name: DB_USERNAME
+                  value: root
+                - name: DB_PASSWORD
+                  value: root
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-svc
+spec:
+  selector:
+    app: springboot-k8s
+  ports:
+    - protocol: "TCP"
+      port: 30000
+      targetPort: 30000
+  type: NodePort
