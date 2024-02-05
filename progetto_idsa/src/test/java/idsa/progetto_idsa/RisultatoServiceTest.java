@@ -16,10 +16,12 @@ import org.junit.Test;
 
 import idsa.progetto_idsa.dto.RisultatoDto;
 import idsa.progetto_idsa.entity.Appuntamento;
+import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.entity.Risultato;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.RisultatoMapper;
 import idsa.progetto_idsa.repository.AppuntamentoRepository;
+import idsa.progetto_idsa.repository.PazienteRepository;
 import idsa.progetto_idsa.repository.RisultatoRepository;
 import idsa.progetto_idsa.service.impl.RisultatoServiceImpl;
 
@@ -29,8 +31,9 @@ public class RisultatoServiceTest {
     public void testCreateRisultato() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         RisultatoDto risultatoDto = new RisultatoDto(1L, "Referto", "Prescrizione", 1L);
         
@@ -53,8 +56,9 @@ public class RisultatoServiceTest {
     public void testGetRisultatoById() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         RisultatoDto risultatoDto = new RisultatoDto(1L, "Referto", "Prescrizione", 1L);
    

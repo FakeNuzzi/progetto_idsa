@@ -66,4 +66,10 @@ public class PazienteServiceImpl implements PazienteService {
             .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per l'id dato : " + id_paziente));
         pazienteRepository.deleteById(id_paziente);
     }
+
+    @Override
+    public PazienteDto getPazienteByEmail(String email){
+        Paziente paziente = pazienteRepository.findByEmail(email);
+        return PazienteMapper.mapToPazienteDto(paziente);
+    }
 }

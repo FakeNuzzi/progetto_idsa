@@ -10,4 +10,5 @@ public interface PazienteService {
     List<PazienteDto> getAllPazienti();
     PazienteDto updatePaziente(Long id_utente, PazienteDto updatedPaziente);
     void deletePaziente(Long id_utente);
+    PazienteDto getPazienteByEmail(String email);
 }
