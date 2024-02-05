@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import idsa.progetto_idsa.dto.AppuntamentoDto;
 import idsa.progetto_idsa.entity.Appuntamento;
 import idsa.progetto_idsa.entity.Medico;
+import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.AppuntamentoMapper;
 import idsa.progetto_idsa.repository.AppuntamentoRepository;
@@ -86,6 +87,14 @@ public class AppuntamentoServiceImpl implements AppuntamentoService {
     public List<AppuntamentoDto> getAppuntamentiByMedico(Long id_medico){
         Medico medico = medicoRepository.findById(id_medico).get();
         List<Appuntamento> appuntamenti = appuntamentoRepository.findByMedico(medico);
+        return appuntamenti.stream().map((appuntamento) -> AppuntamentoMapper.mapToAppuntamentoDto(appuntamento))
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AppuntamentoDto> getAppuntamentiByPaziente(Long id_paziente){
+        Paziente paziente = pazienteRepository.findById(id_paziente).get();
+        List<Appuntamento> appuntamenti = appuntamentoRepository.findByPaziente(paziente);
         return appuntamenti.stream().map((appuntamento) -> AppuntamentoMapper.mapToAppuntamentoDto(appuntamento))
             .collect(Collectors.toList());
     }

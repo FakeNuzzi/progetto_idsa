@@ -37,6 +37,12 @@ public class RisultatoController {
         return ResponseEntity.ok(risultatoDto);
     }
 
+    @GetMapping("/paziente/{id}")
+    public ResponseEntity<?> getRisultatiByPaziente(@PathVariable("id")Long id_paziente){
+        List<RisultatoDto> risultati = risultatoService.getRisultatiByPaziente(id_paziente);
+        return ResponseEntity.ok(risultati);
+    }
+
     @GetMapping
     public ResponseEntity<List<RisultatoDto>> getAllRisultati(){
         List<RisultatoDto> risultati = risultatoService.getAllRisultati();
