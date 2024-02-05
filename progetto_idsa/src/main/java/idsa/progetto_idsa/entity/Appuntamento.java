@@ -27,11 +27,11 @@ public class Appuntamento {
     @JoinColumn(name = "id_medico")
     private Medico medico;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "tipo_visita", nullable = true)
     private Visita visita;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "data_slot")
     private Slot slot;
 }
