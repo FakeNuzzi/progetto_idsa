@@ -10,4 +10,5 @@ public interface SlotService {
     List<SlotDto> getAllSlots();
     SlotDto updateSlot(Long id_slot, SlotDto updatedSlot);
     void deleteSlot(Long id_slot);
+    List <SlotDto> getSlotsNotOccupied();
 }

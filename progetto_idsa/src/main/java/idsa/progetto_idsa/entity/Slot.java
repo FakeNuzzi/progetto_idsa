@@ -1,6 +1,7 @@
 package idsa.progetto_idsa.entity;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import jakarta.persistence.*;
 
@@ -19,8 +20,10 @@ public class Slot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_slot;
-    @Column(name = "DataOraSlot", nullable = false, unique = true)
-    private Date DataOraSlot;
+    @Column(name = "DataOraSlot", nullable = false)
+    private Date DataSlot;
+    @Column(name = "OraSlot", nullable = false)
+    private Time OraSlot;
     @Column(name = "Occupata", nullable = false)
     private Boolean occupato;
 }

@@ -10,4 +10,5 @@ public interface MedicoService {
     List<MedicoDto> getAllMedici();
     MedicoDto updateMedico(Long id_utente, MedicoDto updatedMedico);
     void deleteMedico(Long id_utente);
+    MedicoDto getMedicoByEmail(String email);
 }

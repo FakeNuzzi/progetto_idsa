@@ -54,4 +54,10 @@ public class SlotController {
         slotService.deleteSlot(id_slot);
         return ResponseEntity.ok("Slot cancellato con successo");
     }
+
+    @GetMapping("/free")
+    public ResponseEntity<List<SlotDto>> getNonOccupati(){
+        List<SlotDto> slots = slotService.getSlotsNotOccupied();
+        return ResponseEntity.ok(slots);
+    }
 }

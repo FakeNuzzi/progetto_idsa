@@ -71,4 +71,10 @@ public class MedicoServiceImpl implements MedicoService {
             .orElseThrow(() -> new ResourceNotFoundException("Medico non esiste per l'id dato : " + id_medico));
         medicoRepository.deleteById(id_medico);
     }
+
+    @Override
+    public MedicoDto getMedicoByEmail(String email){
+        Medico medico = medicoRepository.findByEmail(email);
+        return MedicoMapper.mapToMedicoDto(medico);
+    }
 }
