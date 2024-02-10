@@ -86,7 +86,15 @@ public class RisultatoServiceImpl implements RisultatoService {
                 risultatiDto.add(RisultatoMapper.mapToRisultatoDto(ris));
             }
         }
-        
         return risultatiDto;
+    }
+
+    @Override
+    public List<RisultatoDto> getRisultatiByApp(Long id_app){
+        Appuntamento appuntamento = appuntamentoRepository.findById(id_app)
+            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_app));
+        List<Risultato> risultati = risultatoRepository.findByAppuntamento(appuntamento);
+        return risultati.stream().map((risultato) -> RisultatoMapper.mapToRisultatoDto(risultato))
+            .collect(Collectors.toList());
     }
 }
