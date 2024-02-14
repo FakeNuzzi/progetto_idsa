@@ -14,6 +14,7 @@ import idsa.progetto_idsa.dto.SlotDto;
 import idsa.progetto_idsa.service.SlotService;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class SlotControllerTest {
 
     @Test
     public void testGetAllSlots() throws Exception {
-        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), false);
+        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), Time.valueOf("10:00:00"), false);
         List<SlotDto> slots = Collections.singletonList(slotsDto);
         when(slotsService.getAllSlots()).thenReturn(slots);
 
@@ -49,43 +50,47 @@ public class SlotControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$[0].dataOraSlot", is(slotsDto.getDataOraSlot().toString())))
+                .andExpect(jsonPath("$[0].DataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$[0].OraSlot", is(slotsDto.getOraSlot())))
                 .andExpect(jsonPath("$[0].occupato", is(slotsDto.getOccupato())));
     }
 
     @Test
     public void testGetSlotById() throws Exception {
-        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), false);
+        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), Time.valueOf("10:00:00"), false);
         when(slotsService.getSlotById(1L)).thenReturn(slotsDto);
 
         mockMvc.perform(get("/api/slots/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$.dataOraSlot", is(slotsDto.getDataOraSlot().toString())))
+                .andExpect(jsonPath("$.DataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$.OraSlot", is(slotsDto.getOraSlot())))
                 .andExpect(jsonPath("$.occupato", is(slotsDto.getOccupato())));
     }
 
     @Test
     public void testCreateSlot() throws Exception {
-        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), false);
+        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), Time.valueOf("10:00:00"), false);
         when(slotsService.createSlot(any(SlotDto.class))).thenReturn(slotsDto);
         
         mockMvc.perform(post("/api/slots")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "    \"dataOraSlot\": \"2021-10-10\",\n" +
+                        "    \"DataSlot\": \"2021-10-10\",\n" +
+                        "    \"OraSlot\": \"10:00:00\",\n" +
                         "    \"occupato\": false\n" +
                         "}"))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$.dataOraSlot", is(slotsDto.getDataOraSlot().toString())))
+                .andExpect(jsonPath("$.DataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$.OraSlot", is(slotsDto.getOraSlot())))
                 .andExpect(jsonPath("$.occupato", is(slotsDto.getOccupato())));
     }
 
     @Test
     public void testUpdateSlot() throws Exception {
-        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), false);
+        SlotDto slotsDto = new SlotDto(1L, Date.valueOf("2021-10-10"), Time.valueOf("10:00:00"), false);
         when(slotsService.updateSlot(any(Long.class), any(SlotDto.class))).thenReturn(slotsDto);
 
         mockMvc.perform(put("/api/slots/1")
@@ -96,7 +101,8 @@ public class SlotControllerTest {
                         "}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$.dataOraSlot", is(slotsDto.getDataOraSlot().toString())))
+                .andExpect(jsonPath("$.DataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$.OraSlot", is(slotsDto.getOraSlot())))
                 .andExpect(jsonPath("$.occupato", is(slotsDto.getOccupato())));
     }
 

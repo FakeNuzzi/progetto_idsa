@@ -16,7 +16,6 @@ import org.junit.Test;
 
 import idsa.progetto_idsa.dto.RisultatoDto;
 import idsa.progetto_idsa.entity.Appuntamento;
-import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.entity.Risultato;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.RisultatoMapper;
@@ -83,8 +82,9 @@ public class RisultatoServiceTest {
     public void testGetAllRisultati() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         RisultatoDto risultatoDto = new RisultatoDto(1L, "Referto", "Prescrizione", 1L);
 
@@ -110,8 +110,9 @@ public class RisultatoServiceTest {
     public void testUpdateRisultato() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         RisultatoDto risultatoDto = new RisultatoDto(1L, "Referto", "Prescrizione", 1L);
         
@@ -137,8 +138,9 @@ public class RisultatoServiceTest {
     public void testDeleteRisultato() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         RisultatoDto risultatoDto = new RisultatoDto(1L, "Referto", "Prescrizione", 1L);
         
@@ -158,8 +160,9 @@ public class RisultatoServiceTest {
     public void testGetRisultatoByIdRisultatoNotFound() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         when(mockAppuntamentoRepository.findAllById(any())).thenReturn(new ArrayList<>());
         when(mockRisultatoRepository.findById(any())).thenReturn(Optional.empty());
@@ -173,8 +176,9 @@ public class RisultatoServiceTest {
     public void testUpdateRisultatoNotFound() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         when(mockAppuntamentoRepository.findAllById(any())).thenReturn(new ArrayList<>());
         when(mockRisultatoRepository.findById(any())).thenReturn(Optional.empty());
@@ -188,8 +192,9 @@ public class RisultatoServiceTest {
     public void testDeleteRisultatoNotFound() {
         RisultatoRepository mockRisultatoRepository = mock(RisultatoRepository.class);
         AppuntamentoRepository mockAppuntamentoRepository = mock(AppuntamentoRepository.class);
+        PazienteRepository mockPazienteRepository = mock(PazienteRepository.class);
 
-        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository);
+        RisultatoServiceImpl risultatoService = new RisultatoServiceImpl(mockRisultatoRepository, mockAppuntamentoRepository, mockPazienteRepository);
 
         when(mockAppuntamentoRepository.findAllById(any())).thenReturn(new ArrayList<>());
         when(mockRisultatoRepository.findById(any())).thenReturn(Optional.empty());
