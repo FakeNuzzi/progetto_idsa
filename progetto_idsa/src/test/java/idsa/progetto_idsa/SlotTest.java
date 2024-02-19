@@ -3,6 +3,7 @@ package idsa.progetto_idsa;
 import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import org.junit.Test;
 
@@ -11,26 +12,26 @@ import idsa.progetto_idsa.entity.Slot;
 public class SlotTest {
     @Test
     public void testEqualsSameObject() {        
-        Slot s = new Slot(1L, Date.valueOf("2021-01-01"), false);
+        Slot s = new Slot(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
         assertTrue(s.equals(s));
     }
 
     @Test
     public void testGetDataOraSlot() {
-        Slot s = new Slot(1L, Date.valueOf("2021-01-01"), false);
-        assertTrue(s.getDataOraSlot().equals(Date.valueOf("2021-01-01")));
+        Slot s = new Slot(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
+        assertTrue(s.getId_slot().equals(1L));
     }
 
     @Test
     public void testSetDataOraSlot() {
         Slot s = new Slot();
-        s.setDataOraSlot(Date.valueOf("2021-01-01"));
-        assertTrue(s.getDataOraSlot().equals(Date.valueOf("2021-01-01")));
+        s.setId_slot(1L);
+        assertTrue(s.getId_slot().equals(1L));
     }
 
     @Test
     public void testGetOccupato() {
-        Slot s = new Slot(1L, Date.valueOf("2021-01-01"), false);
+        Slot s = new Slot(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
         assertTrue(s.getOccupato().equals(false));
     }
 

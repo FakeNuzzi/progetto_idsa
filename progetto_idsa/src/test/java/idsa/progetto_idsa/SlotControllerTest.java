@@ -50,8 +50,8 @@ public class SlotControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$[0].DataSlot", is(slotsDto.getDataSlot().toString())))
-                .andExpect(jsonPath("$[0].OraSlot", is(slotsDto.getOraSlot())))
+                .andExpect(jsonPath("$[0].dataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$[0].oraSlot", is(slotsDto.getOraSlot().toString())))
                 .andExpect(jsonPath("$[0].occupato", is(slotsDto.getOccupato())));
     }
 
@@ -64,8 +64,8 @@ public class SlotControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$.DataSlot", is(slotsDto.getDataSlot().toString())))
-                .andExpect(jsonPath("$.OraSlot", is(slotsDto.getOraSlot())))
+                .andExpect(jsonPath("$.dataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$.oraSlot", is(slotsDto.getOraSlot().toString())))
                 .andExpect(jsonPath("$.occupato", is(slotsDto.getOccupato())));
     }
 
@@ -77,14 +77,14 @@ public class SlotControllerTest {
         mockMvc.perform(post("/api/slots")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "    \"DataSlot\": \"2021-10-10\",\n" +
-                        "    \"OraSlot\": \"10:00:00\",\n" +
+                        "    \"dataSlot\": \"2021-10-10\",\n" +
+                        "    \"oraSlot\": \"10:00:00\",\n" +
                         "    \"occupato\": false\n" +
                         "}"))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$.DataSlot", is(slotsDto.getDataSlot().toString())))
-                .andExpect(jsonPath("$.OraSlot", is(slotsDto.getOraSlot())))
+                .andExpect(jsonPath("$.dataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$.oraSlot", is(slotsDto.getOraSlot().toString())))
                 .andExpect(jsonPath("$.occupato", is(slotsDto.getOccupato())));
     }
 
@@ -96,13 +96,14 @@ public class SlotControllerTest {
         mockMvc.perform(put("/api/slots/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "    \"dataOraSlot\": \"2021-10-10\",\n" +
+                        "    \"dataSlot\": \"2021-10-10\",\n" +
+                        "    \"oraSlot\": \"10:00:00\",\n" +
                         "    \"occupato\": false\n" +
                         "}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id_slot", is(slotsDto.getId_slot().intValue())))
-                .andExpect(jsonPath("$.DataSlot", is(slotsDto.getDataSlot().toString())))
-                .andExpect(jsonPath("$.OraSlot", is(slotsDto.getOraSlot())))
+                .andExpect(jsonPath("$.dataSlot", is(slotsDto.getDataSlot().toString())))
+                .andExpect(jsonPath("$.oraSlot", is(slotsDto.getOraSlot().toString())))
                 .andExpect(jsonPath("$.occupato", is(slotsDto.getOccupato())));
     }
 
