@@ -14,7 +14,7 @@
 	<name>progetto_idsa</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
         <exec.mainClass>idsa.progetto_idsa.ProgettoIdsaApplication</exec.mainClass>
 	</properties>
 	<dependencies>

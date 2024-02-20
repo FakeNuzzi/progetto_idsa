@@ -1,15 +1,13 @@
-FROM openjdk:11-jdk
-
-# Update the package list and install maven
-RUN apt-get update && apt-get install -y maven
-
+# Stage 1: Build with Maven
+FROM maven:3.8.1-openjdk-17-slim AS build
 WORKDIR /home/progetto_idsa/progetto_idsa
-
-COPY pom.xml /home/progetto_idsa/progetto_idsa
-COPY src /home/progetto_idsa/progetto_idsa/src
-
-# compile the maven project skipping the tests
+COPY pom.xml .
+COPY src ./src
 RUN mvn package -DskipTests
+RUN ls target
 
-# replace this with your main class and any necessary arguments
-CMD ["java", "-cp", "target/my-app-1.0.jar", "idsa.progetto_idsa.ProgettoIdsaApplication"]
+# Stage 2: Run the application
+FROM openjdk:17-slim
+WORKDIR /app
+COPY --from=build /home/progetto_idsa/progetto_idsa/target/my-app-1.0.jar ./my-app-1.0.jar
+CMD ["java", "-jar", "my-app-1.0.jar"]
