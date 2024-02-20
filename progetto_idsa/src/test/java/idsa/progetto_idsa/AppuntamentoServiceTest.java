@@ -9,7 +9,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -279,7 +278,7 @@ public class AppuntamentoServiceTest {
         Visita mappedVisita = new Visita();
         mappedVisita.setId_vis(1L);
         Slot mappedSlot = new Slot();
-        mappedSlot.setDataOraSlot(Date.valueOf("2021-10-10"));
+        mappedSlot.setId_slot(1L);
 
         when(mockAppuntamentoRepository.findAllById(any())).thenReturn(new ArrayList<>());
         when(mockPazienteRepository.findById(any())).thenReturn(Optional.of(mappedPaziente));

@@ -1,6 +1,7 @@
 package idsa.progetto_idsa.dto;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import lombok.Setter;
 
 public class SlotDto {
     private Long id_slot;
-    private Date DataOraSlot;
+    private Date DataSlot;
+    private Time OraSlot;
     private Boolean occupato;
 }

@@ -8,7 +8,8 @@ public class SlotMapper {
     public static SlotDto mapToSlotDto(Slot slot) {
         return new SlotDto(
             slot.getId_slot(),
-            slot.getDataOraSlot(),
+            slot.getDataSlot(),
+            slot.getOraSlot(),
             slot.getOccupato()
         );
     }
@@ -16,7 +17,8 @@ public class SlotMapper {
     public static Slot mapToSlot(SlotDto slotDto, AppuntamentoRepository appuntamentoRepository) {
         return new Slot(
             slotDto.getId_slot(),
-            slotDto.getDataOraSlot(),
+            slotDto.getDataSlot(),
+            slotDto.getOraSlot(),
             slotDto.getOccupato()
         );
     }

@@ -55,4 +55,10 @@ public class PazienteController {
         pazienteService.deletePaziente(id_paziente);
         return ResponseEntity.ok("Paziente cancellato con successo");
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<PazienteDto> getPazienteByEmail(@PathVariable("email")String email){
+        PazienteDto pazienteDto = pazienteService.getPazienteByEmail(email);
+        return ResponseEntity.ok(pazienteDto);
+    }
 }

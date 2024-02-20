@@ -59,4 +59,11 @@ public class SlotServiceImpl implements SlotService {
         slotRepository.findById(id_slot);
         slotRepository.deleteById(id_slot);
     }
+
+    @Override
+    public List<SlotDto> getSlotsNotOccupied(){
+        List<Slot> slots = slotRepository.findByOccupato(false);
+        return slots.stream().map((slot) -> SlotMapper.mapToSlotDto(slot))
+            .collect(Collectors.toList());
+    }
 }

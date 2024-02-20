@@ -54,4 +54,10 @@ public class MedicoController {
         medicoService.deleteMedico(id_medico);
         return ResponseEntity.ok("Medico cancellato con successo");
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<MedicoDto> getMedicoByEmail(@PathVariable("email")String email){
+        MedicoDto medicoDto = medicoService.getMedicoByEmail(email);
+        return ResponseEntity.ok(medicoDto);
+    }
 }

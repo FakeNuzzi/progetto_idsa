@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class SlotServiceTest {
 
         SlotServiceImpl slotService = new SlotServiceImpl(mockSlotRepository, mockAppuntamentoRepository);
 
-        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), false);;
+        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
         
         Appuntamento mockAppuntamento = new Appuntamento();
         mockAppuntamento.setId_app(1L);
@@ -43,8 +44,11 @@ public class SlotServiceTest {
 
         verify(mockSlotRepository).save(any());
         
-        assertTrue(result.getDataOraSlot().equals(slotDto.getDataOraSlot()));
-        assertTrue(result.getOccupato().equals(slotDto.getOccupato()));    }
+        assertTrue(result.getId_slot().equals(slotDto.getId_slot()));
+        assertTrue(result.getDataSlot().equals(slotDto.getDataSlot()));
+        assertTrue(result.getOraSlot().equals(slotDto.getOraSlot()));
+        assertTrue(result.getOccupato().equals(slotDto.getOccupato()));
+    }
 
     @Test
     public void testGetSlotById() {
@@ -53,7 +57,7 @@ public class SlotServiceTest {
 
         SlotServiceImpl slotService = new SlotServiceImpl(mockSlotRepository, mockAppuntamentoRepository);
 
-        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), false);;
+        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
    
         Appuntamento mockAppuntamento = new Appuntamento();
         mockAppuntamento.setId_app(1L);        
@@ -65,7 +69,9 @@ public class SlotServiceTest {
 
         verify(mockSlotRepository).findById(1L);
 
-        assertTrue(result.getDataOraSlot().equals(slotDto.getDataOraSlot()));
+        assertTrue(result.getId_slot().equals(slotDto.getId_slot()));
+        assertTrue(result.getDataSlot().equals(slotDto.getDataSlot()));
+        assertTrue(result.getOraSlot().equals(slotDto.getOraSlot()));
         assertTrue(result.getOccupato().equals(slotDto.getOccupato()));
     }
 
@@ -76,7 +82,7 @@ public class SlotServiceTest {
 
         SlotServiceImpl slotService = new SlotServiceImpl(mockSlotRepository, mockAppuntamentoRepository);
 
-        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), false);;
+        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
 
         Appuntamento mockAppuntamento = new Appuntamento();
         mockAppuntamento.setId_app(1L);
@@ -90,7 +96,9 @@ public class SlotServiceTest {
 
         verify(mockSlotRepository).findAll();
 
-        assertTrue(result.get(0).getDataOraSlot().equals(slotDto.getDataOraSlot()));
+        assertTrue(result.get(0).getId_slot().equals(slotDto.getId_slot()));
+        assertTrue(result.get(0).getDataSlot().equals(slotDto.getDataSlot()));
+        assertTrue(result.get(0).getOraSlot().equals(slotDto.getOraSlot()));
         assertTrue(result.get(0).getOccupato().equals(slotDto.getOccupato()));
     }
 
@@ -101,7 +109,7 @@ public class SlotServiceTest {
 
         SlotServiceImpl slotService = new SlotServiceImpl(mockSlotRepository, mockAppuntamentoRepository);
 
-        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), false);;
+        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
         
         Appuntamento mockAppuntamento = new Appuntamento();
         mockAppuntamento.setId_app(1L);
@@ -115,7 +123,9 @@ public class SlotServiceTest {
 
         verify(mockSlotRepository).findById(any());
 
-        assertTrue(result.getDataOraSlot().equals(slotDto.getDataOraSlot()));
+        assertTrue(result.getId_slot().equals(slotDto.getId_slot()));
+        assertTrue(result.getDataSlot().equals(slotDto.getDataSlot()));
+        assertTrue(result.getOraSlot().equals(slotDto.getOraSlot()));
         assertTrue(result.getOccupato().equals(slotDto.getOccupato()));
     }
 
@@ -126,7 +136,7 @@ public class SlotServiceTest {
 
         SlotServiceImpl slotService = new SlotServiceImpl(mockSlotRepository, mockAppuntamentoRepository);
 
-        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), false);;;
+        SlotDto slotDto = new SlotDto(1L, Date.valueOf("2021-01-01"), Time.valueOf("10:00:00"), false);
         
         Appuntamento mockAppuntamento = new Appuntamento();
         mockAppuntamento.setId_app(1L);

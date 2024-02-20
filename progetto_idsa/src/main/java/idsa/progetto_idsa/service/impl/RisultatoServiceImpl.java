@@ -1,5 +1,6 @@
 package idsa.progetto_idsa.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import idsa.progetto_idsa.dto.RisultatoDto;
+import idsa.progetto_idsa.entity.Appuntamento;
+import idsa.progetto_idsa.entity.Paziente;
 import idsa.progetto_idsa.entity.Risultato;
 import idsa.progetto_idsa.exception.ResourceNotFoundException;
 import idsa.progetto_idsa.mapper.RisultatoMapper;
 import idsa.progetto_idsa.repository.AppuntamentoRepository;
+import idsa.progetto_idsa.repository.PazienteRepository;
 import idsa.progetto_idsa.repository.RisultatoRepository;
 import idsa.progetto_idsa.service.RisultatoService;
 import lombok.AllArgsConstructor;
@@ -22,6 +26,8 @@ public class RisultatoServiceImpl implements RisultatoService {
     private RisultatoRepository risultatoRepository;
     @Autowired
     private AppuntamentoRepository appuntamentoRepository;
+    @Autowired
+    private PazienteRepository pazienteRepository;
 
     @Override
     public RisultatoDto createRisultato(RisultatoDto risultatoDto) {
@@ -63,5 +69,32 @@ public class RisultatoServiceImpl implements RisultatoService {
         risultatoRepository.findById(id_risultato)
             .orElseThrow(() -> new ResourceNotFoundException("Risultato non esiste per l'id dato : " + id_risultato));
         risultatoRepository.deleteById(id_risultato);
+    }
+
+    @Override
+    public List<RisultatoDto> getRisultatiByPaziente(Long id_utente){
+        Paziente paziente = pazienteRepository.findById(id_utente)
+            .orElseThrow(() -> new ResourceNotFoundException("Paziente non esiste per l'id dato : " + id_utente));
+        List<Appuntamento> appuntamenti = appuntamentoRepository.findByPaziente(paziente);
+
+        List<RisultatoDto> risultatiDto = new ArrayList<>();
+        List<Risultato> risultati = new ArrayList<>();
+        
+        for(Appuntamento appuntamento : appuntamenti){
+            risultati = risultatoRepository.findByAppuntamento(appuntamento);
+            for(Risultato ris : risultati){
+                risultatiDto.add(RisultatoMapper.mapToRisultatoDto(ris));
+            }
+        }
+        return risultatiDto;
+    }
+
+    @Override
+    public List<RisultatoDto> getRisultatiByApp(Long id_app){
+        Appuntamento appuntamento = appuntamentoRepository.findById(id_app)
+            .orElseThrow(() -> new ResourceNotFoundException("Appuntamento non esiste per l'id dato : " + id_app));
+        List<Risultato> risultati = risultatoRepository.findByAppuntamento(appuntamento);
+        return risultati.stream().map((risultato) -> RisultatoMapper.mapToRisultatoDto(risultato))
+            .collect(Collectors.toList());
     }
 }

@@ -10,4 +10,6 @@ public interface RisultatoService {
     List<RisultatoDto> getAllRisultati();
     RisultatoDto updateRisultato(Long id_ris, RisultatoDto updatedRisultato);
     void deleteRisultato(Long id_ris);
+    List<RisultatoDto> getRisultatiByPaziente(Long id_utente);
+    List<RisultatoDto> getRisultatiByApp(Long id_app);
 }

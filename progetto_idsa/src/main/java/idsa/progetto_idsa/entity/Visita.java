@@ -23,7 +23,7 @@ public class Visita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_vis;
-    @Column(name = "Tipo_visita", nullable = false, unique = true)
+    @Column(name = "Tipo_visita", nullable = false)
     private String tipoVis;
     @Column(name = "Descrizione", nullable = true)
     private String descr;

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class RisultatoController {
     private RisultatoService risultatoService;
+    
     @PostMapping
     public ResponseEntity<RisultatoDto> createRisultato(@RequestBody RisultatoDto risultatoDto){
         RisultatoDto savedRisultato = risultatoService.createRisultato(risultatoDto);
@@ -35,6 +36,12 @@ public class RisultatoController {
     public ResponseEntity<?> getRisultatoById(@PathVariable("id")Long id_risultato){
         RisultatoDto risultatoDto = risultatoService.getRisultatoById(id_risultato);
         return ResponseEntity.ok(risultatoDto);
+    }
+
+    @GetMapping("/paziente/{id}")
+    public ResponseEntity<?> getRisultatiByPaziente(@PathVariable("id")Long id_paziente){
+        List<RisultatoDto> risultati = risultatoService.getRisultatiByPaziente(id_paziente);
+        return ResponseEntity.ok(risultati);
     }
 
     @GetMapping
@@ -53,5 +60,11 @@ public class RisultatoController {
     public ResponseEntity<String> deleteRisultato(@PathVariable("id")Long id_risultato){
         risultatoService.deleteRisultato(id_risultato);
         return ResponseEntity.ok("Risultato cancellato con successo");
+    }
+
+    @GetMapping("/appuntamento/{id}")
+    public ResponseEntity<?> getRisultatiByApp(@PathVariable("id")Long id_appuntamento){
+        List<RisultatoDto> risultati = risultatoService.getRisultatiByApp(id_appuntamento);
+        return ResponseEntity.ok(risultati);
     }
 }
